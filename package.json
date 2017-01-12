@@ -1,0 +1,14 @@
+{
+  "name": "pol-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo setup tests"
+  },
+  "author": "jacobmoe@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.14.0"
+  }
+}
