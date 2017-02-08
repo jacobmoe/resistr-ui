@@ -1,16 +1,21 @@
 import React, { PropTypes } from 'react'
 import RepCard from './RepCard'
+const {Grid, Row, Col} = require('react-flexbox-grid')
 
 const RepCardList = ({ cards, onRepCardClick }) => (
-  <ul>
-    {cards.map(card =>
-      <RepCard
-        key={card.id}
-        {...card}
-        onClick={() => onRepCardClick(card.id)}
-      />
-    )}
-  </ul>
+  <Grid>
+    <Row>
+      {cards.map(card =>
+        <Col xs={6} md={3}>
+          <RepCard
+            key={card.id}
+            {...card}
+            onClick={() => onRepCardClick(card.id)}
+          />
+        </Col>
+      )}
+    </Row>
+  </Grid>
 )
 
 RepCardList.propTypes = {
