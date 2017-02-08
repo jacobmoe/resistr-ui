@@ -1,25 +1,25 @@
 import React, { PropTypes } from 'react'
-import Card from './Card'
+import RepCard from './RepCard'
 
-const CardList = ({ cards, onCardClick }) => (
+const RepCardList = ({ cards, onRepCardClick }) => (
   <ul>
     {cards.map(card =>
-      <Card
+      <RepCard
         key={card.id}
         {...card}
-        onClick={() => onCardClick(card.id)}
+        onClick={() => onRepCardClick(card.id)}
       />
     )}
   </ul>
 )
 
-CardList.propTypes = {
+RepCardList.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     completed: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired
   }).isRequired).isRequired,
-  onCardClick: PropTypes.func.isRequired
+  onRepCardClick: PropTypes.func.isRequired
 }
 
-export default CardList
+export default RepCardList

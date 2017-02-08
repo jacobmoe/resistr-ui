@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { toggleCard } from '../actions'
-import CardList from '../components/CardList'
+import RepCardList from '../components/RepCardList'
 
 const getReps = (reps, filter) => {
   switch (filter) {
@@ -20,14 +20,14 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onCardClick: (id) => {
+  onRepCardClick: (id) => {
     dispatch(toggleCard(id))
   }
 })
 
-const RepCardList = connect(
+const RepCardListContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CardList)
+)(RepCardList)
 
-export default RepCardList
+export default RepCardListContainer
