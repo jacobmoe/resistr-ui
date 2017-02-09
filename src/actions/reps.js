@@ -14,7 +14,7 @@ function receiveReps(json) {
 }
 
 export function fetchReps(value) {
-  const path = '/api/congress/legislators'
+  const path = '/api/congress/legislators?zip=' + value
 
   return (dispatch) => {
     dispatch(requestReps())

@@ -14,7 +14,6 @@ const App = () => (
     <div>
       <LocationForm />
       <RepCardList />
-      <Footer />
     </div>
   </MuiThemeProvider>
 )

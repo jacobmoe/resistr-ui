@@ -11,4 +11,4 @@ test:
 	@echo "setup tests"
 
 start-dev-server:
-	node node_modules/.bin/webpack-dev-server --content-base build/
+	node node_modules/.bin/webpack-dev-server --host 0.0.0.0 --content-base build/

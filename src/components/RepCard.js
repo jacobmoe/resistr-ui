@@ -8,9 +8,14 @@ import {
 } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 
+const repCardStyles = {
+  height: '285px',
+  marginBottom: '20px'
+}
+
 const RepCard = ({ onClick, completed, rep }) => {
   return (
-    <Card>
+    <Card style={repCardStyles}>
       <CardHeader
         title={rep.first_name + ' ' + rep.last_name}
         subtitle={rep.chamber}

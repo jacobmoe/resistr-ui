@@ -20,7 +20,7 @@ class LocationForm extends Component {
     }
 
     return (
-      <Grid>
+      <Grid style={{marginBottom: '20px'}}>
         <Row center="xs">
           <Col xs={12} >
             <form onSubmit={onSubmit}>
