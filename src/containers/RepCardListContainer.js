@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { toggleCard } from '../actions'
+import { toggleCard } from '../actions/cards'
 import RepCardList from '../components/RepCardList'
 
 const getReps = (reps, filter) => {
@@ -15,9 +15,11 @@ const getReps = (reps, filter) => {
   }
 }
 
-const mapStateToProps = (state) => ({
-  cards: getReps(state.cards, state.visibilityFilter)
-})
+const mapStateToProps = (state) => {
+  return {
+    reps: getReps(state.reps, state.visibilityFilter)
+  }
+}
 
 const mapDispatchToProps = (dispatch) => ({
   onRepCardClick: (id) => {

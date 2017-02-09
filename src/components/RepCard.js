@@ -8,34 +8,33 @@ import {
 } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 
-const RepCard = ({ onClick, completed, text }) => (
-  <Card>
-    <CardHeader
-      title="Temp Title"
-      subtitle={text}
-      avatar=""
-      titleColor={completed ? 'red' : 'black'}
-    />
+const RepCard = ({ onClick, completed, rep }) => {
+  return (
+    <Card>
+      <CardHeader
+        title={rep.first_name + ' ' + rep.last_name}
+        subtitle={rep.chamber}
+        avatar=""
+        titleColor={completed ? 'red' : 'black'}
+      />
 
-    <CardTitle title="Card title" subtitle="Card subtitle" />
+      <CardTitle title={rep.phone} subtitle={rep.oc_email} />
 
-    <CardText>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-      Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed.
-      Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-    </CardText>
+      <CardText>
+        {rep.office}
+      </CardText>
 
-    <CardActions>
-      <FlatButton label="Mark complete" onClick={onClick} />
-    </CardActions>
-  </Card>
-)
+      <CardActions>
+        <FlatButton label="Called" onClick={onClick} />
+      </CardActions>
+    </Card>
+  )
+}
 
 RepCard.propTypes = {
   onClick: PropTypes.func.isRequired,
-  completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  completed: PropTypes.bool,
+  rep: PropTypes.shape({})
 }
 
 export default RepCard

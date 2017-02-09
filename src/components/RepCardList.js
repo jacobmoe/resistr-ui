@@ -2,27 +2,29 @@ import React, { PropTypes } from 'react'
 import RepCard from './RepCard'
 const {Grid, Row, Col} = require('react-flexbox-grid')
 
-const RepCardList = ({ cards, onRepCardClick }) => (
-  <Grid>
-    <Row>
-      {cards.map(card =>
-        <Col xs={6} md={3}>
-          <RepCard
-            key={card.id}
-            {...card}
-            onClick={() => onRepCardClick(card.id)}
-          />
-        </Col>
-      )}
-    </Row>
-  </Grid>
-)
+const RepCardList = ({ reps, onRepCardClick }) => {
+  let count = 0
+  return (
+    <Grid>
+      <Row>
+        {reps.map(rep =>
+          <Col xs={6} md={3} key={count++}>
+            <RepCard
+              rep={rep}
+              onClick={() => onRepCardClick(count++)}
+            />
+          </Col>
+        )}
+      </Row>
+    </Grid>
+  )
+}
 
 RepCardList.propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    completed: PropTypes.bool.isRequired,
-    text: PropTypes.string.isRequired
+  reps: PropTypes.arrayOf(PropTypes.shape({
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    complete: PropTypes.bool
   }).isRequired).isRequired,
   onRepCardClick: PropTypes.func.isRequired
 }
