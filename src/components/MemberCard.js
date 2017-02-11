@@ -8,25 +8,25 @@ import {
 } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 
-const repCardStyles = {
+const memberCardStyles = {
   height: '285px',
   marginBottom: '20px'
 }
 
-const RepCard = ({ onClick, completed, rep }) => {
+const MemberCard = ({ onClick, completed, member }) => {
   return (
-    <Card style={repCardStyles}>
+    <Card style={memberCardStyles}>
       <CardHeader
-        title={rep.first_name + ' ' + rep.last_name}
-        subtitle={rep.chamber}
+        title={member.first_name + ' ' + member.last_name}
+        subtitle={member.chamber}
         avatar=""
         titleColor={completed ? 'red' : 'black'}
       />
 
-      <CardTitle title={rep.phone} subtitle={rep.oc_email} />
+      <CardTitle title={member.phone} subtitle={member.oc_email} />
 
       <CardText>
-        {rep.office}
+        {member.office}
       </CardText>
 
       <CardActions>
@@ -36,10 +36,10 @@ const RepCard = ({ onClick, completed, rep }) => {
   )
 }
 
-RepCard.propTypes = {
+MemberCard.propTypes = {
   onClick: PropTypes.func.isRequired,
   completed: PropTypes.bool,
-  rep: PropTypes.shape({})
+  member: PropTypes.shape({})
 }
 
-export default RepCard
+export default MemberCard

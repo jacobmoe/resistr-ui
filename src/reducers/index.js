@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import cards from './cards'
 import visibilityFilter from './visibilityFilter'
-import reps from './reps'
+import members from './members'
 
 export default combineReducers({
   cards,
   visibilityFilter,
-  reps
+  members
 })

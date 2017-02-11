@@ -6,14 +6,14 @@ injectTapEventPlugin();
 import React from 'react'
 import Footer from './Footer'
 import LocationForm from '../containers/LocationForm'
-import RepCardList from '../containers/RepCardListContainer'
+import MemberCardList from '../containers/MemberCardListContainer'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const App = () => (
   <MuiThemeProvider>
     <div>
       <LocationForm />
-      <RepCardList />
+      <MemberCardList />
     </div>
   </MuiThemeProvider>
 )

@@ -1,15 +1,15 @@
 import { connect } from 'react-redux'
 import { toggleCard } from '../actions/cards'
-import RepCardList from '../components/RepCardList'
+import MemberCardList from '../components/MemberCardList'
 
-const getReps = (reps, filter) => {
+const getMembers = (members, filter) => {
   switch (filter) {
   case 'SHOW_ALL':
-    return reps
+    return members
   case 'SHOW_COMPLETED':
-    return reps.filter(t => t.completed)
+    return members.filter(t => t.completed)
   case 'SHOW_ACTIVE':
-    return reps.filter(t => !t.completed)
+    return members.filter(t => !t.completed)
   default:
     throw new Error('Unknown filter: ' + filter)
   }
@@ -17,19 +17,19 @@ const getReps = (reps, filter) => {
 
 const mapStateToProps = (state) => {
   return {
-    reps: getReps(state.reps, state.visibilityFilter)
+    members: getMembers(state.members, state.visibilityFilter)
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onRepCardClick: (id) => {
+  onMemberCardClick: (id) => {
     dispatch(toggleCard(id))
   }
 })
 
-const RepCardListContainer = connect(
+const MemberCardListContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(RepCardList)
+)(MemberCardList)
 
-export default RepCardListContainer
+export default MemberCardListContainer
