@@ -2,27 +2,30 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import DistrictList from './DistrictList'
 import MemberCardListContainer from './MemberCardListContainer'
+import { fetchMembers } from '../actions/members'
 
-const Content = ({ districts }) => {
+const Content = ({ district, districts, fetchDistrictMembers }) => {
   let content
-
-  if (districts.length > 1) {
-    content = <DistrictList />
-  } else {
-    content = <MemberCardListContainer />
-  }
 
   return (
     <div>
-      {content}
+      {district && <MemberCardListContainer />}
+      {(districts.length > 1) && <DistrictList />}
     </div>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    districts: state.districts
+    districts: state.districts,
+    district: state.district
   }
 }
 
-export default connect(mapStateToProps)(Content)
+const mapDispatchToProps = (dispatch) => ({
+  fetchDistrictMembers: (district) => {
+    dispatch(fetchMembers(district))
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content)

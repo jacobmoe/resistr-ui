@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { updateDistrict } from '../actions/districts'
 
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
@@ -7,10 +8,6 @@ const {Grid, Row, Col} = require('react-flexbox-grid')
 
 class DistrictList extends Component {
   render () {
-    const onClick = (e) => {
-      debugger
-    }
-
     return (
       <Grid>
         <Row center="xs" style={{textAlign: 'left'}}>
@@ -19,9 +16,9 @@ class DistrictList extends Component {
               <Subheader>Select your district</Subheader>
               {this.props.districts.map(district =>
                  <ListItem
-                    primaryText={district}
-                    onClick={onClick}
-                    key={district}
+                    primaryText={district.state + '-' + district.district}
+                    onClick={(e) => {this.props.updateDistrict(district)}}
+                    key={district.state + '-' + district.district}
                  />
               )}
             </List>
@@ -34,12 +31,19 @@ class DistrictList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    districts: state.districts.map(d => d.state + '-' + d.district)
+    districts: state.districts
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  updateDistrict: (district) => {
+    dispatch(updateDistrict(district))
+  }
+})
+
 DistrictList = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(DistrictList)
 
 export default DistrictList

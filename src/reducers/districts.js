@@ -1,10 +1,19 @@
-const districts = (state = [], action) => {
+export const districts = (state = [], action) => {
   switch (action.type) {
-  case 'RECEIVE_DISTRICTS':
+  case 'SET_DISTRICTS':
     return action.districts
+  case 'RESET_DISTRICTS':
+    return []
   default:
     return state
   }
 }
 
-export default districts
+export const district = (state = null, action) => {
+  switch (action.type) {
+  case 'SET_DISTRICT':
+    return action.district
+  default:
+    return state
+  }
+}
