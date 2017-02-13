@@ -4,6 +4,7 @@ import visibilityFilter from './visibilityFilter'
 import members from './members'
 import { districts, district } from './districts'
 import addresses from './addresses'
+import { browserCoords } from './coords'
 
 export default combineReducers({
   cards,
@@ -11,5 +12,6 @@ export default combineReducers({
   members,
   districts,
   district,
-  addresses
+  addresses,
+  browserCoords
 })

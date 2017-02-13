@@ -13,8 +13,17 @@ function setAddresses(json) {
   }
 }
 
-export function fetchAddresses(term) {
-  const path = '/api/geography/addresses?term=' + term
+export function fetchAddresses(term, browserCoords) {
+  let path = '/api/geography/addresses?term=' + term
+
+  if (browserCoords) {
+    path += (
+      '&focuslat=' +
+      browserCoords.latitude +
+      '&focuslon=' +
+      browserCoords.longitude
+    )
+  }
 
   return (dispatch) => {
     dispatch(requestAddresses())
