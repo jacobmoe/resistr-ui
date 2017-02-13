@@ -4,27 +4,33 @@ import {
   CardActions,
   CardHeader,
   CardTitle,
-  CardText
+  CardText,
 } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 
 const memberCardStyles = {
-  height: '285px',
   marginBottom: '20px',
   textAlign: 'left'
+}
+
+const memberImage = (member) => {
+  const domain = 'https://theunitedstates.io/images/congress/'
+  const size = '225x275/'
+
+  return domain + size + member.bioguide_id + ".jpg"
 }
 
 const MemberCard = ({ onClick, completed, member }) => {
   return (
     <Card style={memberCardStyles}>
       <CardHeader
-        title={member.first_name + ' ' + member.last_name}
+        title={member.firstName + ' ' + member.lastName}
         subtitle={member.chamber}
-        avatar=""
+        avatar={member.imageUrl}
         titleColor={completed ? 'red' : 'black'}
       />
 
-      <CardTitle title={member.phone} subtitle={member.oc_email} />
+      <CardTitle title={member.phone} subtitle={member.ocEmail} />
 
       <CardText>
         {member.office}

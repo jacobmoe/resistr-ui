@@ -3,7 +3,7 @@ import cards from './cards'
 import visibilityFilter from './visibilityFilter'
 import members from './members'
 import { districts, district } from './districts'
-import addresses from './addresses'
+import addressSearchResults from './addressSearchResults'
 import { browserCoords } from './coords'
 
 export default combineReducers({
@@ -12,6 +12,6 @@ export default combineReducers({
   members,
   districts,
   district,
-  addresses,
+  addressSearchResults,
   browserCoords
 })

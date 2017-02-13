@@ -22,8 +22,8 @@ const MemberCardList = ({ members, onMemberCardClick }) => {
 
 MemberCardList.propTypes = {
   members: PropTypes.arrayOf(PropTypes.shape({
-    first_name: PropTypes.string.isRequired,
-    last_name: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
     complete: PropTypes.bool
   }).isRequired).isRequired,
   onMemberCardClick: PropTypes.func.isRequired

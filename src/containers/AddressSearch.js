@@ -2,29 +2,57 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 
-import { fetchAddresses } from '../actions/addresses.js'
+import { fetchAddressSearchResults } from '../actions/addressSearchResults'
+import { fetchDistricts } from '../actions/districts'
 import AutoComplete from 'material-ui/AutoComplete'
 
 const {Grid, Row, Col} = require('react-flexbox-grid')
 
 class AddressSearch extends Component {
   render () {
+    // got to be a better way to do this
+    // after selecting the address from the list
+    // need to get the original object with coords
+    // from the data source.
+    // but what is `dataSourceConfig` for if there's
+    // no way to access "value"
+    const onClose = () => {
+      const addresses = this.refs.autocomplete.props.dataSource
+      const text = this.refs.autocomplete.state.searchText
+
+      const obj = _.find(addresses, {label: text})
+
+      if (obj) {
+        this.props.getDistricts({
+          lat: obj.coords[1],
+          lon: obj.coords[0]
+        })
+      }
+    }
+
     return (
       <Grid style={{marginBottom: '20px'}}>
         <Row center="xs">
           <Col xs={12} >
             <AutoComplete
               hintText="Address"
-              dataSource={this.props.addresses}
+              dataSource={this.props.addressSearchResults}
+              dataSourceConfig={{
+                text: 'label',
+                value: 'coords'
+              }}
               onUpdateInput={
                 _.debounce((value) => (
-                  this.props.getAddresses(
+                  this.props.getAddressSearchResults(
                     value,
                     this.props.browserCoords
                   )
                 ), 250)
               }
               fullWidth={true}
+              onClose={onClose.bind(this)}
+              ref={'autocomplete'}
+              filter={AutoComplete.fuzzyFilter}
             />
           </Col>
         </Row>
@@ -35,14 +63,22 @@ class AddressSearch extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    addresses: state.addresses.map((a) => (a.properties.label)),
+    addressSearchResults: state.addressSearchResults.map((a) => (
+      {
+        label: a.properties.label,
+        coords: a.geometry.coordinates
+      }
+    )),
     browserCoords: state.browserCoords
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getAddresses: (value, browserCoords) => {
-    dispatch(fetchAddresses(value, browserCoords))
+  getAddressSearchResults: (value, browserCoords) => {
+    dispatch(fetchAddressSearchResults(value, browserCoords))
+  },
+  getDistricts: (coords) => {
+    dispatch(fetchDistricts(coords))
   }
 })
 

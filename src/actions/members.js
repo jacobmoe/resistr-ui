@@ -19,7 +19,7 @@ function fetchSenators(state) {
     .then((response) => {return response.json()})
 }
 
-function fetchReps(districtInfo) {
+function fetchReps (districtInfo) {
   const dist = districtInfo.state + '-' + districtInfo.district
   const path = '/api/congress/house/districts/'+dist+'/members'
   return api.get(path)

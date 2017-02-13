@@ -40,12 +40,13 @@ export function setDistricts(districts) {
   }
 }
 
-export function fetchDistricts(value) {
-  const path = '/api/congress/house/districts?zip=' + value
+export function fetchDistricts(coords) {
+  const path = '/api/congress/house/districts'
+  const query = '?lat='+coords.lat+'&lon='+coords.lon
 
   return (dispatch) => {
     dispatch(requestDistricts())
-    return api.get(path)
+    return api.get(path + query)
       .then((response) => {return response.json()})
       .then((json) => {dispatch(receiveDistricts(json))})
   }

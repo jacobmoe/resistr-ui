@@ -16,7 +16,6 @@ const App = () => {
     <MuiThemeProvider>
       <div>
         <AddressSearch />
-        <LocationForm />
         <Content />
       </div>
     </MuiThemeProvider>
