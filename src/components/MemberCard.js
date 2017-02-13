@@ -10,7 +10,8 @@ import FlatButton from 'material-ui/FlatButton'
 
 const memberCardStyles = {
   height: '285px',
-  marginBottom: '20px'
+  marginBottom: '20px',
+  textAlign: 'left'
 }
 
 const MemberCard = ({ onClick, completed, member }) => {
