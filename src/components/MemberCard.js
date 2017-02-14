@@ -10,8 +10,23 @@ import FlatButton from 'material-ui/FlatButton'
 import Avatar from 'material-ui/Avatar'
 
 const memberCardStyles = {
+  minWidth: '300px',
   marginBottom: '20px',
-  textAlign: 'left'
+  marginLeft: '20px',
+  textAlign: 'left',
+  minHeight: '300px',
+  position: 'relative'
+}
+
+const actionStyles = {
+  top: 'auto',
+  left: 'auto',
+  bottom: '10px',
+  position: 'absolute'
+}
+
+const partyLogoStyles = {
+  float: 'right'
 }
 
 const partyImage = (member) => {
@@ -40,11 +55,13 @@ const MemberCard = ({ onClick, completed, member }) => {
         {member.officeAddress}
       </CardText>
 
-      <CardActions>
-        <FlatButton label="Called" onClick={onClick} />
+      <CardActions style={actionStyles}>
         <Avatar
-            style={{float: 'right'}}
-            src={partyImage(member)} />
+            src={partyImage(member)}
+            style={partyLogoStyles}
+        />
+
+        <FlatButton label="Register Call" onClick={onClick} />
       </CardActions>
     </Card>
   )

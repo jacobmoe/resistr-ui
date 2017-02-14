@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import MemberCard from './MemberCard'
-const {Grid, Row, Col} = require('react-flexbox-grid')
+import { Grid, Row, Col } from 'react-flexbox-grid'
 
 const MemberCardList = ({ members, onMemberCardClick }) => {
   let count = 0
@@ -8,7 +8,11 @@ const MemberCardList = ({ members, onMemberCardClick }) => {
     <Grid>
       <Row>
         {members.map(member =>
-          <Col xs={12} sm={6} md={3} key={count++}>
+          <Col
+            key={count++}
+            className="col-xs-12 col-sm-8 col-md-6 col-lg-4"
+          >
+
             <MemberCard
               member={member}
               onClick={() => onMemberCardClick(count++)}

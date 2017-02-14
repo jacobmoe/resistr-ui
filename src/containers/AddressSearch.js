@@ -6,8 +6,6 @@ import { fetchAddressSearchResults } from '../actions/addressSearchResults'
 import { buildLocation } from '../actions/location'
 import AutoComplete from 'material-ui/AutoComplete'
 
-const {Grid, Row, Col} = require('react-flexbox-grid')
-
 class AddressSearch extends Component {
   render () {
     // got to be a better way to do this
@@ -34,32 +32,27 @@ class AddressSearch extends Component {
     }
 
     return (
-      <Grid style={{marginBottom: '20px'}}>
-        <Row center="xs">
-          <Col xs={12} >
-            <AutoComplete
-              hintText="Address"
-              dataSource={this.props.addressSearchResults}
-              dataSourceConfig={{
-                text: 'label',
-                value: 'coords'
-              }}
-              onUpdateInput={
-                _.debounce((value) => (
-                  this.props.getAddressSearchResults(
-                    value,
-                    this.props.browserCoords
-                  )
-                ), 250)
-              }
-              fullWidth={true}
-              onClose={onClose.bind(this)}
-              ref={'autocomplete'}
-              filter={AutoComplete.fuzzyFilter}
-            />
-          </Col>
-        </Row>
-      </Grid>
+      <AutoComplete
+        hintText="Address"
+        dataSource={this.props.addressSearchResults}
+        dataSourceConfig={{
+          text: 'label',
+          value: 'coords'
+        }}
+        onUpdateInput={
+          _.debounce((value) => (
+            this.props.getAddressSearchResults(
+              value,
+              this.props.browserCoords
+            )
+          ), 250)
+        }
+        fullWidth={true}
+        onClose={onClose.bind(this)}
+        ref={'autocomplete'}
+        filter={AutoComplete.fuzzyFilter}
+        style={{paddingLeft: '10px'}}
+      />
     )
   }
 }
