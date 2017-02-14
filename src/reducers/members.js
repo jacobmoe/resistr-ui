@@ -1,6 +1,6 @@
 const members = (state = [], action) => {
   switch (action.type) {
-  case 'RECEIVE_MEMBERS':
+  case 'SET_MEMBERS':
     return action.members
   case 'RESET_MEMBERS':
     return []

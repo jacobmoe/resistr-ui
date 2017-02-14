@@ -1,14 +1,9 @@
 import api from '../api'
+import { startRequest, endRequest } from './requests'
 
-function requestMembers() {
+function setMembers(json) {
   return {
-    type: 'REQUEST_MEMBERS'
-  }
-}
-
-function receiveMembers(json) {
-  return {
-    type: 'RECEIVE_MEMBERS',
+    type: 'SET_MEMBERS',
     members: json.results
   }
 }
@@ -26,24 +21,39 @@ function fetchReps (districtInfo) {
     .then((response) => {return response.json()})
 }
 
-export function fetchMembers(district) {
-  let members = {results: [], count: 0}
+function fetchStateLegislators (location) {
+  const coords = location.coords
+
+  const path = '/api/states/search'
+  const query = '?lat='+coords.lat+'&lon='+coords.lon
+
+  return api.get(path+query)
+    .then((response) => {return response.json()})
+}
+
+function combineMembers(members, json) {
+  return [...members.results, ...json.results]
+}
+
+export function fetchMembers(location) {
+  let members = {results: []}
+  const congressionalDistrict = location.congressionalDistrict
+
+  const combine = (json) => {
+    members.results = [...members.results, ...json.results]
+  }
 
   return (dispatch) => {
-    dispatch(requestMembers())
+    dispatch(startRequest())
 
-    return fetchSenators(district.state)
-      .then((json) => {
-        members.results = [...members.results, ...json.results]
-        members.count += json.count
-      })
-      .then(() => fetchReps(district))
-      .then((json) => {
-        members.results = [...members.results, ...json.results]
-        members.count += json.count
-        return members
-      })
-      .then((members) => {dispatch(receiveMembers(members))})
+    return fetchSenators(congressionalDistrict.state)
+      .then(combine)
+      .then(() => fetchReps(congressionalDistrict))
+      .then(combine)
+      .then(() => fetchStateLegislators(location))
+      .then(combine)
+      .then(() => {dispatch(setMembers(members))})
+      .then(() => {dispatch(endRequest())})
   }
 }
 

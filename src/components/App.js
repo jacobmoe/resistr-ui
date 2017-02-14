@@ -7,8 +7,7 @@ injectTapEventPlugin();
 
 import Footer from './Footer'
 import AddressSearch from '../containers/AddressSearch'
-import LocationForm from '../containers/LocationForm'
-import Content from '../containers/Content'
+import MemberCardListContainer from '../containers/MemberCardListContainer'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const App = () => {
@@ -16,7 +15,7 @@ const App = () => {
     <MuiThemeProvider>
       <div>
         <AddressSearch />
-        <Content />
+        <MemberCardListContainer />
       </div>
     </MuiThemeProvider>
   )
