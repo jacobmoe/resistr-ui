@@ -5,7 +5,6 @@ import React from 'react'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import Footer from './Footer'
 import AddressSearch from '../containers/AddressSearch'
 import MemberCardListContainer from '../containers/MemberCardListContainer'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
