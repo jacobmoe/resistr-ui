@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 
 import { fetchAddressSearchResults } from '../actions/addressSearchResults'
-import { fetchDistricts } from '../actions/districts'
+import {
+  fetchCongressionalDistrictSearchResults
+} from '../actions/congressionalDistrictSearchResults'
+import { setAddress } from '../actions/address'
 import AutoComplete from 'material-ui/AutoComplete'
 
 const {Grid, Row, Col} = require('react-flexbox-grid')
@@ -23,10 +26,15 @@ class AddressSearch extends Component {
       const obj = _.find(addresses, {label: text})
 
       if (obj) {
-        this.props.getDistricts({
+        const coords = {
           lat: obj.coords[1],
           lon: obj.coords[0]
-        })
+        }
+
+        this.props.setAddress(obj)
+        this.props.getDistricts(coords)
+        obj.coords = coords
+
       }
     }
 
@@ -78,7 +86,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchAddressSearchResults(value, browserCoords))
   },
   getDistricts: (coords) => {
-    dispatch(fetchDistricts(coords))
+    dispatch(fetchCongressionalDistrictSearchResults(coords))
+  },
+  setAddress: (address) => {
+    dispatch(setAddress(address))
   }
 })
 

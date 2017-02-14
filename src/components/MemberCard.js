@@ -7,24 +7,28 @@ import {
   CardText,
 } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
+import Avatar from 'material-ui/Avatar'
 
 const memberCardStyles = {
   marginBottom: '20px',
   textAlign: 'left'
 }
 
-const memberImage = (member) => {
-  const domain = 'https://theunitedstates.io/images/congress/'
-  const size = '225x275/'
-
-  return domain + size + member.bioguide_id + ".jpg"
+const partyImage = (member) => {
+  if (member.party === 'D') {
+    return '/img/democratic_donkey.png'
+  } else if (member.party === 'R') {
+    return '/img/republican_elephant.png'
+  } else {
+    return null
+  }
 }
 
 const MemberCard = ({ onClick, completed, member }) => {
   return (
     <Card style={memberCardStyles}>
       <CardHeader
-        title={member.firstName + ' ' + member.lastName}
+        title={member.name}
         subtitle={member.chamber}
         avatar={member.imageUrl}
         titleColor={completed ? 'red' : 'black'}
@@ -33,11 +37,14 @@ const MemberCard = ({ onClick, completed, member }) => {
       <CardTitle title={member.phone} subtitle={member.ocEmail} />
 
       <CardText>
-        {member.office}
+        {member.officeAddress}
       </CardText>
 
       <CardActions>
         <FlatButton label="Called" onClick={onClick} />
+        <Avatar
+            style={{float: 'right'}}
+            src={partyImage(member)} />
       </CardActions>
     </Card>
   )

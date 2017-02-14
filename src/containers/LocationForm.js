@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchDistricts } from '../actions/districts'
+import {
+  fetchCongressionalDistrictSearchResults
+} from '../actions/congressionalDistrictSearchResults'
 
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -15,7 +17,9 @@ class LocationForm extends Component {
       if (!input.value.trim()) {
         return
       }
-      this.props.dispatch(fetchDistricts(input.value))
+      this.props.dispatch(
+        fetchCongressionalDistrictSearchResults(input.value)
+      )
     }
 
     return (

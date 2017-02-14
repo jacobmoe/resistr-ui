@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import DistrictList from './DistrictList'
+import CongressionalDistrictList from './CongressionalDistrictList'
 import MemberCardListContainer from './MemberCardListContainer'
 import CongressionalDistrictsMap from '../components/CongressionalDistrictsMap'
 import { fetchMembers } from '../actions/members'
@@ -15,7 +15,7 @@ const Content = ({ district, districts, fetchDistrictMembers }) => {
       <Row center="xs">
         <Col xs={12}>
           {district && <MemberCardListContainer />}
-          {(districts.length > 1) && <DistrictList />}
+          {(districts.length > 1) && <CongressionalDistrictList />}
         </Col>
       </Row>
 
@@ -30,8 +30,8 @@ const Content = ({ district, districts, fetchDistrictMembers }) => {
 
 const mapStateToProps = (state) => {
   return {
-    districts: state.districts,
-    district: state.district
+    districts: state.congressionalDistrictSearchResults,
+    district: state.congressionalDistrict
   }
 }
 

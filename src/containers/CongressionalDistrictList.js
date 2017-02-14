@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { updateDistrict } from '../actions/districts'
+import {
+  updateCongressionalDistrict
+} from '../actions/congressionalDistrict'
 
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 
-class DistrictList extends Component {
+class CongressionalDistrictList extends Component {
   render () {
     return (
       <List>
@@ -13,7 +15,9 @@ class DistrictList extends Component {
         {this.props.districts.map(district =>
             <ListItem
               primaryText={district.state + '-' + district.district}
-              onClick={(e) => {this.props.updateDistrict(district)}}
+              onClick={(e) => {
+                this.props.updateCongressionalDistrict(district)
+              }}
               key={district.state + '-' + district.district}
             />
         )}
@@ -24,19 +28,19 @@ class DistrictList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    districts: state.districts
+    districts: state.congressionalDistrictSearchResults
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  updateDistrict: (district) => {
-    dispatch(updateDistrict(district))
+  updateCongressionalDistrict: (district) => {
+    dispatch(updateCongressionalDistrict(district))
   }
 })
 
-DistrictList = connect(
+CongressionalDistrictList = connect(
   mapStateToProps,
   mapDispatchToProps
-)(DistrictList)
+)(CongressionalDistrictList)
 
-export default DistrictList
+export default CongressionalDistrictList
