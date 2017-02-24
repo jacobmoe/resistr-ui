@@ -6,7 +6,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import AddressSearch from '../containers/AddressSearch'
-import MemberCardListContainer from '../containers/MemberCardListContainer'
+import DivisionListContainer from '../containers/DivisionListContainer'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import { blue900 } from 'material-ui/styles/colors'
@@ -25,7 +25,7 @@ const App = () => {
       <div>
         <AppBar title="Resistr"/>
         <AddressSearch />
-        <MemberCardListContainer />
+        <DivisionListContainer />
       </div>
     </MuiThemeProvider>
   )

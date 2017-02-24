@@ -51,7 +51,7 @@ class AddressSearch extends Component {
         onClose={onClose.bind(this)}
         ref={'autocomplete'}
         filter={AutoComplete.fuzzyFilter}
-        style={{paddingLeft: '10px'}}
+        style={{paddingLeft: '10px', marginBottom: '20px'}}
       />
     )
   }

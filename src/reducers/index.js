@@ -4,11 +4,15 @@ import members from './members'
 import addressSearchResults from './addressSearchResults'
 import { browserCoords } from './coords'
 import location from './location'
+import requests from './requests'
+import divisions from './divisions'
 
 export default combineReducers({
+  requests,
   visibilityFilter,
   members,
   addressSearchResults,
   location,
-  browserCoords
+  browserCoords,
+  divisions
 })

@@ -6,4 +6,3 @@ export const browserCoords = (state = null, action) => {
     return state
   }
 }
-
