@@ -1,19 +1,19 @@
 import React, { PropTypes } from 'react'
 
-import Official from './Official'
+import OfficialCard from './OfficialCard'
 import { Grid, Row, Col } from 'react-flexbox-grid'
+import Subheader from 'material-ui/Subheader'
 
 const Division = ({division}) => {
   return (
     <Grid>
-      <h1>{division.name}</h1>
+      <Subheader>{division.name}</Subheader>
 
       <Row>
         {division.offices.map(office => {
           return office.officials.map(official =>
-            <Col>
-              <Official
-                  key={official.name}
+            <Col xs sm md lg key={official.name}>
+              <OfficialCard
                   official={official}
                   office={office} />
             </Col>

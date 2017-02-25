@@ -9,6 +9,10 @@ import {
 } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 import Avatar from 'material-ui/Avatar'
+import ActionPhone from 'material-ui/svg-icons/action/settings-phone'
+import Paper from 'material-ui/Paper'
+
+import OfficialCardContact from './OfficialCardContact'
 
 const officialCardStyles = {
   minWidth: '300px',
@@ -23,11 +27,8 @@ const actionStyles = {
   top: 'auto',
   left: 'auto',
   bottom: '10px',
-  position: 'absolute'
-}
-
-const partyLogoStyles = {
-  float: 'right'
+  position: 'absolute',
+  textAlign: 'right'
 }
 
 const partyImage = (member) => {
@@ -40,7 +41,8 @@ const partyImage = (member) => {
   }
 }
 
-const Official = ({ official, office }) => {
+const OfficialCard = ({ official, office }) => {
+
   return (
     <Card style={officialCardStyles}>
       <CardHeader
@@ -50,24 +52,25 @@ const Official = ({ official, office }) => {
       />
 
       <CardText>
-        {official.phones}
-        {official.officeAddress}
-      </CardText>
-
-      <CardText>
-        {official.officeAddress}
+        <OfficialCardContact official={official} />
       </CardText>
 
       <CardActions style={actionStyles}>
-        <Avatar
-            src={partyImage(official)}
-            style={partyLogoStyles}
+        <FlatButton
+            label="Log Action"
+            labelPosition="after"
+            primary={true}
+            icon={<ActionPhone />}
         />
 
-        <FlatButton label="Register Call" />
+        <FlatButton icon={
+          <Avatar
+            style={{backgroundColor: '#fff'}}
+            src={partyImage(official)} />
+        } />
       </CardActions>
     </Card>
   )
 }
 
-export default Official
+export default OfficialCard

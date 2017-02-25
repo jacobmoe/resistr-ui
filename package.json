@@ -12,7 +12,7 @@
     "classnames": "^2.2.5",
     "flexboxgrid": "^6.3.1",
     "lodash": "^4.17.4",
-    "material-ui": "^0.16.7",
+    "material-ui": "^0.17.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-flexbox-grid": "^0.10.2",
