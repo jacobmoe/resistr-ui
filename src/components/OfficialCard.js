@@ -33,22 +33,37 @@ const actionStyles = {
 
 const partyImage = (member) => {
   if (member.party === 'Democratic') {
-    return '/img/democratic_donkey.png'
+    return '/img/democratic-donkey.png'
   } else if (member.party === 'Republican') {
-    return '/img/republican_elephant.png'
+    return '/img/republican-elephant.png'
   } else {
     return null
   }
 }
 
+const defaultImage = '/img/us-flag.png'
+const maxAvatarAttemptCount = 10
+
 const OfficialCard = ({ official, office }) => {
+  let avatarAttemptCount = 0
+
+  const onAvatarError = (e) => {
+    if (avatarAttemptCount++ < maxAvatarAttemptCount) {
+      e.target.src=defaultImage
+    }
+  }
 
   return (
     <Card style={officialCardStyles}>
       <CardHeader
         title={official.name}
         subtitle={office.name}
-        avatar={official.photoUrl}
+        avatar={
+          <Avatar
+            src={official.photoUrl || defaultImage}
+            onError={onAvatarError}
+          />
+        }
       />
 
       <CardText>
@@ -66,7 +81,9 @@ const OfficialCard = ({ official, office }) => {
         <FlatButton icon={
           <Avatar
             style={{backgroundColor: '#fff'}}
-            src={partyImage(official)} />
+            src={partyImage(official)}
+          />
+
         } />
       </CardActions>
     </Card>

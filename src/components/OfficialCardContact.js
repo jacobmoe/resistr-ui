@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
 
 const OfficialCardContact = ({ official }) => {
+  if (!official.address) return (<div></div>)
+
   const address = official.address[0]
   const addressLines = []
   if (address.line1) addressLines.push(address.line1)

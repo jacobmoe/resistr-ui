@@ -7,7 +7,7 @@ import Subheader from 'material-ui/Subheader'
 const Division = ({division}) => {
   return (
     <Grid>
-      <Subheader>{division.name}</Subheader>
+      <Subheader>{division.name.toUpperCase()}</Subheader>
 
       <Row>
         {division.offices.map(office => {
