@@ -1,4 +1,5 @@
 import React from 'react'
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 
 // Needed for onTouchTap. Can remove in future material-ui releases
 // http://stackoverflow.com/a/34015469/988941
@@ -7,27 +8,24 @@ injectTapEventPlugin();
 
 import AddressSearch from '../containers/AddressSearch'
 import DivisionListContainer from '../containers/DivisionListContainer'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import { blue900 } from 'material-ui/styles/colors'
-import AppBar from 'material-ui/AppBar'
+import Layout from './Layout'
 
-const muiTheme = getMuiTheme({
-  palette: {
-    primary1Color: blue900,
-    accent1Color: blue900
-  }
-})
+const Home = () => {
+  return (
+    <div>
+      <AddressSearch />
+      <DivisionListContainer />
+    </div>
+  )
+}
 
 const App = () => {
   return (
-    <MuiThemeProvider muiTheme={muiTheme}>
-      <div>
-        <AppBar title="Resistr"/>
-        <AddressSearch />
-        <DivisionListContainer />
-      </div>
-    </MuiThemeProvider>
+    <Layout>
+      <Router history={browserHistory}>
+        <Route path="/" component={Home} />
+      </Router>
+    </Layout>
   )
 }
 
