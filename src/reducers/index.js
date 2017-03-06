@@ -6,6 +6,7 @@ import { browserCoords } from './coords'
 import location from './location'
 import requests from './requests'
 import divisions from './divisions'
+import drawer from './drawer'
 
 export default combineReducers({
   requests,
@@ -14,5 +15,6 @@ export default combineReducers({
   addressSearchResults,
   location,
   browserCoords,
-  divisions
+  divisions,
+  drawer
 })
