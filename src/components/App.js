@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Route, Link, hashHistory, IndexRoute } from 'react-router'
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 import TextField from 'material-ui/TextField'
 
 // Needed for onTouchTap. Can remove in future material-ui releases
@@ -12,6 +12,16 @@ import DivisionListContainer from '../containers/DivisionListContainer'
 import LayoutContainer from '../containers/LayoutContainer'
 import LoginForm from './form/LoginForm'
 import RegistrationForm from './form/RegistrationForm'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import { blue900 } from 'material-ui/styles/colors'
+
+const muiTheme = getMuiTheme({
+  palette: {
+    primary1Color: blue900,
+    accent1Color: blue900
+  }
+})
 
 const Home = () => {
   return (
@@ -24,13 +34,15 @@ const Home = () => {
 
 const App = () => {
   return (
-    <LayoutContainer>
-      <Router history={hashHistory}>
-        <Route path="/" component={Home} />
-        <Route path="/login" component={LoginForm} />
-        <Route path="/register" component={RegistrationForm} />
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <Router history={browserHistory}>
+        <Route component={LayoutContainer}>
+          <Route path="/" component={Home} />
+          <Route path="/login" component={LoginForm} />
+          <Route path="/register" component={RegistrationForm} />
+        </Route>
       </Router>
-    </LayoutContainer>
+    </MuiThemeProvider>
   )
 }
 

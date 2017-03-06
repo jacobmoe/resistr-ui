@@ -6,6 +6,10 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'app.js'
   },
+  devServer: {
+    port: 8080,
+    historyApiFallback: true
+  },
   module: {
     loaders: [
       {
