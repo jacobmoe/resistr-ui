@@ -7,6 +7,14 @@ import { buildAddress } from '../actions/address'
 import AutoComplete from 'material-ui/AutoComplete'
 
 class AddressSearch extends Component {
+  constructor (params) {
+    super(params)
+
+    if (this.props.address) {
+      this.props.buildAddress(this.props.address)
+    }
+  }
+
   render () {
     // got to be a better way to do this
     // after selecting the address from the list
@@ -46,7 +54,7 @@ class AddressSearch extends Component {
           ref={'autocomplete'}
           filter={AutoComplete.fuzzyFilter}
           style={{paddingLeft: '10px', marginBottom: '20px'}}
-          searchText={(this.props.address && this.props.address.label) || ""}
+          searchText={this.props.address || ""}
       />
     )
   }
