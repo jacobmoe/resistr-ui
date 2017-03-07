@@ -14,11 +14,11 @@ export function resetDivisions() {
   }
 }
 
-export function fetchDivisions(location) {
+export function fetchDivisions(address) {
   return (dispatch) => {
     dispatch(startRequest())
 
-    const path = "/api/representatives?address="+location.label
+    const path = "/api/representatives?address="+address
 
     return api.get(path)
       .then((response) => {return response.json()})

@@ -2,12 +2,21 @@ import React from 'react'
 
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
+import { Link } from 'react-router'
+import { white } from 'material-ui/styles/colors'
 import DrawerContent from './DrawerContent'
+
+const styles = {
+  appBarLink: {
+    color: white,
+    textDecoration: 'none'
+  }
+}
 
 const MainAppBar = ({ handleAppBarClick }) => {
   return (
     <AppBar
-      title="Resistr"
+      title={<Link to="/" style={styles.appBarLink}>Resistr</Link>}
       onLeftIconButtonTouchTap={handleAppBarClick}
     />
   )

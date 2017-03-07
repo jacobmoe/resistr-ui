@@ -11,7 +11,7 @@ import FlatButton from 'material-ui/FlatButton'
 import Avatar from 'material-ui/Avatar'
 import ActionPhone from 'material-ui/svg-icons/action/settings-phone'
 import Paper from 'material-ui/Paper'
-import { grey900 } from 'material-ui/styles/colors'
+import { grey900, white } from 'material-ui/styles/colors'
 
 import OfficialCardContact from './OfficialCardContact'
 
@@ -81,7 +81,7 @@ const OfficialCard = ({ official, office }) => {
 
         <FlatButton icon={
           <Avatar
-            style={{backgroundColor: grey900}}
+            style={{backgroundColor: white}}
             src={partyImage(official)}
           />
 

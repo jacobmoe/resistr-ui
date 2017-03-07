@@ -22,18 +22,16 @@ const DrawerContent = ({handleAppBarClick}) => {
   return (
     <div>
       <AppBar
-          title={<Link to="/" style={styles.titleLink}>Resistr</Link>}
-          iconElementLeft={
-            <IconButton><NavigationClose /></IconButton>
-                          }
-          onLeftIconButtonTouchTap={handleAppBarClick}
+        title={<Link to="/" style={styles.titleLink}>Resistr</Link>}
+        iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+        onLeftIconButtonTouchTap={handleAppBarClick}
       />
-      <MenuItem>
-        <Link to={"/login"} style={styles.menuLink}>Login</Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to={"/register"} style={styles.menuLink}>Register</Link>
-      </MenuItem>
+      <Link to={"/login"} style={styles.menuLink}>
+        <MenuItem>Login</MenuItem>
+      </Link>
+      <Link to={"/register"} style={styles.menuLink}>
+        <MenuItem>Register</MenuItem>
+      </Link>
     </div>
   )
 }
