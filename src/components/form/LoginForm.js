@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { Component } from 'react'
 
+import FormLayout from './FormLayout'
 import EmailField from './EmailField'
 import PasswordField from './PasswordField'
 
-const LoginForm = () => {
+const LoginForm = ({ submit }) => {
   return (
-    <div>
-      <EmailField /><br />
+    <FormLayout submit={submit} title="Sign in">
+      <EmailField />
       <PasswordField />
-    </div>
+    </FormLayout>
   )
 }
 

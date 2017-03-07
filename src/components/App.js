@@ -10,8 +10,8 @@ injectTapEventPlugin();
 import AddressSearch from '../containers/AddressSearch'
 import DivisionListContainer from '../containers/DivisionListContainer'
 import LayoutContainer from '../containers/LayoutContainer'
-import LoginForm from './form/LoginForm'
-import RegistrationForm from './form/RegistrationForm'
+import Login from '../containers/form/Login'
+import Registration from '../containers/form/Registration'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import { blue900 } from 'material-ui/styles/colors'
@@ -38,8 +38,8 @@ const App = () => {
       <Router history={browserHistory}>
         <Route component={LayoutContainer}>
           <Route path="/" component={Home} />
-          <Route path="/login" component={LoginForm} />
-          <Route path="/register" component={RegistrationForm} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Registration} />
         </Route>
       </Router>
     </MuiThemeProvider>

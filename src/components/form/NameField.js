@@ -1,10 +1,16 @@
 import React from 'react'
 
-import TextField from 'material-ui/TextField'
+import { FormsyText } from 'formsy-material-ui/lib'
 
 const NameField = () => {
   return (
-    <TextField hintText="Name" />
+    <FormsyText
+        name="name"
+        validations="isWords"
+        required
+        hintText="Your name"
+        floatingLabelText="Name"
+    />
   )
 }
 

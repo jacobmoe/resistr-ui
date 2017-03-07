@@ -1,10 +1,17 @@
 import React from 'react'
 
-import TextField from 'material-ui/TextField'
+import { FormsyText } from 'formsy-material-ui/lib'
 
 const PasswordField = () => {
   return (
-    <TextField hintText="Password" />
+    <FormsyText
+        name="password"
+        type="password"
+        required
+        hintText="Enter your password"
+        floatingLabelText="Password"
+        validationError="Must be present"
+    />
   )
 }
 

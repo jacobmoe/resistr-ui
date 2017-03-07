@@ -1,10 +1,17 @@
 import React from 'react'
 
-import TextField from 'material-ui/TextField'
+import { FormsyText } from 'formsy-material-ui/lib'
 
 const EmailField = () => {
   return (
-    <TextField hintText="Email" />
+    <FormsyText
+      name="email"
+      validations="isEmail"
+      required
+      hintText="Enter your email address"
+      floatingLabelText="Email"
+      validationError="Must be a valid email address"
+    />
   )
 }
 
