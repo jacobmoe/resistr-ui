@@ -3,3 +3,9 @@ export function toggleDrawer () {
     type: 'TOGGLE_DRAWER'
   }
 }
+
+export function closeDrawer () {
+  return {
+    type: 'CLOSE_DRAWER'
+  }
+}
