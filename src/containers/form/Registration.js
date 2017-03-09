@@ -5,8 +5,7 @@ import RegistrationForm from '../../components/form/RegistrationForm'
 
 const mapStateToProps = (state) => {
   return {
-    errors: state.errors.registrationForm || {},
-    currentUser: state.currentUser
+    errors: state.errors.registrationForm || {}
   }
 }
 

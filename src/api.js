@@ -61,7 +61,10 @@ const congress = {
 const auth = {
   register: (params) => {
     const path = '/api/users/auth/register'
-
+    return post(path, { body: JSON.stringify(params) })
+  },
+  login: (params) => {
+    const path = '/api/users/auth/login'
     return post(path, { body: JSON.stringify(params) })
   }
 }

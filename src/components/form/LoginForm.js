@@ -4,9 +4,9 @@ import FormLayout from './FormLayout'
 import EmailField from './EmailField'
 import PasswordField from './PasswordField'
 
-const LoginForm = ({ submit }) => {
+const LoginForm = ({ errors, submit, clearErrors }) => {
   return (
-    <FormLayout submit={submit} title="Sign in">
+    <FormLayout errors={errors} submit={submit} clearErrors={clearErrors} title="Sign in">
       <EmailField />
       <PasswordField />
     </FormLayout>

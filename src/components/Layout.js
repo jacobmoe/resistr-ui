@@ -43,7 +43,7 @@ const Layout = (props) => {
 
       <Snackbar
         open={!!props.snackbarMessage}
-        message={props.snackbarMessage || ''}
+        message={props.snackbarMessage}
         autoHideDuration={4000}
         onRequestClose={props.handleSnackbarClose}
       />
