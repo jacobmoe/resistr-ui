@@ -21,7 +21,6 @@ export function fetchDivisions(address) {
     const path = "/api/representatives?address="+address
 
     return api.get(path)
-      .then((response) => {return response.json()})
       .then((json) => {dispatch(setDivisions(json))})
       .then(() => {dispatch(endRequest())})
   }

@@ -16,8 +16,14 @@ const styles = {
 const MainAppBar = ({ handleAppBarClick }) => {
   return (
     <AppBar
-      title={<Link to="/" style={styles.appBarLink}>Resistr</Link>}
-      onLeftIconButtonTouchTap={handleAppBarClick}
+        title={
+          <div>
+            <Link to="/" style={styles.appBarLink}>
+              Resistr
+            </Link>
+          </div>
+        }
+        onLeftIconButtonTouchTap={handleAppBarClick}
     />
   )
 }

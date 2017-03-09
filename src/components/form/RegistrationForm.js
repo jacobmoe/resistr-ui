@@ -5,9 +5,9 @@ import NameField from './NameField'
 import EmailField from './EmailField'
 import PasswordField from './PasswordField'
 
-const RegistrationForm = ({ submit }) => {
+const RegistrationForm = ({ errors, submit, clearErrors }) => {
   return (
-    <FormLayout submit={submit} title="Sign up">
+    <FormLayout errors={errors} submit={submit} clearErrors={clearErrors} title="Sign up">
       <NameField />
       <EmailField />
       <PasswordField />

@@ -1,13 +1,20 @@
 import { connect } from 'react-redux'
+import { register } from '../../actions/auth'
+import { clearErrors } from '../../actions/errors'
 import RegistrationForm from '../../components/form/RegistrationForm'
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    errors: state.errors.registrationForm || {}
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  submit: () => {
-    debugger
+  submit: (params) => {
+    dispatch(register(params))
+  },
+  clearErrors: () => {
+    dispatch(clearErrors('registrationForm'))
   }
 })
 

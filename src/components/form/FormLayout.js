@@ -32,16 +32,32 @@ class FormLayout extends Component {
     }
   }
 
-  enableSubmission () {
+  enableSubmission = () => {
     this.setState({
       canSubmit: true
     })
   }
 
-  disableSubmission () {
+  disableSubmission = () => {
     this.setState({
       canSubmit: false
     })
+  }
+
+  serverErrors = () => {
+    const errors = this.props.errors || {}
+
+    return Object.keys(errors).reduce((acc, key) => {
+      if (errors[key]) {
+        if (Array.isArray(errors[key])) {
+          acc[key] = errors[key].join('; ')
+        } else {
+          acc[key] = errors[key]
+        }
+      }
+
+      return acc
+    }, {})
   }
 
   render () {
@@ -52,10 +68,12 @@ class FormLayout extends Component {
             {this.props.title}
           </Subheader>
           <Form
-              onValid={this.enableSubmission.bind(this)}
-              onInvalid={this.disableSubmission.bind(this)}
+              onValid={this.enableSubmission}
+              onInvalid={this.disableSubmission}
               onValidSubmit={this.props.submit}
-              onInvalidSubmit={this.disableSubmission.bind(this)}
+              onInvalidSubmit={this.disableSubmission}
+              validationErrors={this.serverErrors() || this.state.validationErrors}
+              onChange={this.props.clearErrors}
           >
             {this.props.children}
             <RaisedButton

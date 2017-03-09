@@ -5,6 +5,7 @@ import address from './address'
 import requests from './requests'
 import divisions from './divisions'
 import drawer from './drawer'
+import errors from './errors'
 
 export default combineReducers({
   requests,
@@ -12,5 +13,6 @@ export default combineReducers({
   address,
   browserCoords,
   divisions,
-  drawer
+  drawer,
+  errors
 })

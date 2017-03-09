@@ -1,10 +1,14 @@
-const requests = (state = false, action) => {
+const defaultState = {
+  requestStarted: false
+}
+
+const requests = (state = defaultState, action) => {
   switch (action.type) {
   case 'START_REQUEST':
     return {
       requestStarted: true
     }
-  case 'STOP_REQUEST':
+  case 'END_REQUEST':
     return {
       requestStarted: false
     }
