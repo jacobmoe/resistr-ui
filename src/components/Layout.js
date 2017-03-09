@@ -2,6 +2,7 @@ import React from 'react'
 
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
+import Snackbar from 'material-ui/Snackbar'
 import { Link } from 'react-router'
 import { white } from 'material-ui/styles/colors'
 import DrawerContent from './DrawerContent'
@@ -28,17 +29,24 @@ const MainAppBar = ({ handleAppBarClick }) => {
   )
 }
 
-const Layout = ({ children, drawerOpen, handleAppBarClick }) => {
+const Layout = (props) => {
   return (
     <div>
-      <MainAppBar handleAppBarClick={handleAppBarClick} />
+      <MainAppBar handleAppBarClick={props.handleAppBarClick} />
       <Drawer
-          onRequestChange={handleAppBarClick}
-          open={drawerOpen}
+          onRequestChange={props.handleAppBarClick}
+          open={props.drawerOpen}
           docked={false} >
-        <DrawerContent handleAppBarClick={handleAppBarClick} />
+        <DrawerContent handleAppBarClick={props.handleAppBarClick} />
       </Drawer>
-      {children}
+      {props.children}
+
+      <Snackbar
+        open={!!props.snackbarMessage}
+        message={props.snackbarMessage || ''}
+        autoHideDuration={4000}
+        onRequestClose={props.handleSnackbarClose}
+      />
     </div>
   )
 }

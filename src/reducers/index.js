@@ -6,6 +6,7 @@ import requests from './requests'
 import divisions from './divisions'
 import drawer from './drawer'
 import errors from './errors'
+import snackbarMessage from './snackbarMessage'
 
 export default combineReducers({
   requests,
@@ -14,5 +15,6 @@ export default combineReducers({
   browserCoords,
   divisions,
   drawer,
-  errors
+  errors,
+  snackbarMessage
 })
