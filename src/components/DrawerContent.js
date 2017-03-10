@@ -18,7 +18,30 @@ const styles = {
   }
 }
 
-const DrawerContent = ({handleAppBarClick}) => {
+const LoggedInContent = ({ logout }) => {
+  return (
+    <div>
+      <Link style={styles.menuLink} onClick={logout}>
+        <MenuItem>Logout</MenuItem>
+      </Link>
+    </div>
+  )
+}
+
+const LoggedOutContent = () => {
+  return (
+    <div>
+      <Link to={"/login"} style={styles.menuLink}>
+        <MenuItem>Login</MenuItem>
+      </Link>
+      <Link to={"/register"} style={styles.menuLink}>
+        <MenuItem>Register</MenuItem>
+      </Link>
+    </div>
+  )
+}
+
+const DrawerContent = ({ loggedIn, handleAppBarClick, logout }) => {
   return (
     <div>
       <AppBar
@@ -26,12 +49,7 @@ const DrawerContent = ({handleAppBarClick}) => {
         iconElementLeft={<IconButton><NavigationClose /></IconButton>}
         onLeftIconButtonTouchTap={handleAppBarClick}
       />
-      <Link to={"/login"} style={styles.menuLink}>
-        <MenuItem>Login</MenuItem>
-      </Link>
-      <Link to={"/register"} style={styles.menuLink}>
-        <MenuItem>Register</MenuItem>
-      </Link>
+      {loggedIn ? <LoggedInContent logout={logout} /> : <LoggedOutContent />}
     </div>
   )
 }

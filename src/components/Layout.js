@@ -36,8 +36,13 @@ const Layout = (props) => {
       <Drawer
           onRequestChange={props.handleAppBarClick}
           open={props.drawerOpen}
-          docked={false} >
-        <DrawerContent handleAppBarClick={props.handleAppBarClick} />
+          docked={false}
+      >
+        <DrawerContent
+            handleAppBarClick={props.handleAppBarClick}
+            logout={props.logout}
+            loggedIn={props.loggedIn}
+        />
       </Drawer>
       {props.children}
 

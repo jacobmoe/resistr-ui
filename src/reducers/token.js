@@ -5,8 +5,12 @@ const token = (state = window.localStorage.token || null, action) => {
 
     return action.token
   case 'CLEAR_TOKEN':
+    delete window.localStorage.token
+
     return null
   default:
     return state
   }
 }
+
+export default token

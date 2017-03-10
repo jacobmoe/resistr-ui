@@ -7,6 +7,7 @@ import divisions from './divisions'
 import drawer from './drawer'
 import errors from './errors'
 import snackbarMessage from './snackbarMessage'
+import token from './token'
 
 export default combineReducers({
   requests,
@@ -16,5 +17,6 @@ export default combineReducers({
   divisions,
   drawer,
   errors,
-  snackbarMessage
+  snackbarMessage,
+  token
 })

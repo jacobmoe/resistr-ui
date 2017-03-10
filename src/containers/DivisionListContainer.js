@@ -3,7 +3,9 @@ import DivisionList from '../components/DivisionList'
 
 const mapStateToProps = (state) => {
   return {
-    divisions: Object.values(state.divisions)
+    divisions: Object.keys(state.divisions).map((key) => {
+      return state.divisions[key]
+    })
   }
 }
 

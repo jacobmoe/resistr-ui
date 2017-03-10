@@ -23,7 +23,6 @@ export function fetchAddressSearchResults (term, browserCoords) {
   return (dispatch) => {
     dispatch(startRequest())
     return api.get(path)
-      .then((response) => {return response.json()})
       .then((json) => {dispatch(setAddressResults(json))})
       .then(() => {dispatch(endRequest())})
   }

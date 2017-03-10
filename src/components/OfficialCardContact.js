@@ -13,7 +13,7 @@ const OfficialCardContact = ({ official }) => {
 
   return (
     <div>
-      <p>{official.phones[0]}</p>
+      <p>{official.phones && official.phones[0]}</p>
 
       {addressLines.map((line) => {
          return (
