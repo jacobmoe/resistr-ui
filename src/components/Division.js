@@ -13,7 +13,7 @@ const Division = ({division}) => {
         {division.offices.map(office => {
           return office.officials.map(official =>
             <Col xs sm md lg key={official.name}>
-              <OfficialCardContainer official={official} office={office} />
+              <OfficialCardContainer official={official} office={office} division={division} />
             </Col>
           )
          })}

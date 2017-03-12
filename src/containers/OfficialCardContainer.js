@@ -1,24 +1,24 @@
 import { connect } from 'react-redux'
-import { clearErrors } from '../actions/errors'
 import OfficialCard from '../components/OfficialCard'
 import { openDrawer } from '../actions/drawer'
+import { setActiveOfficial } from '../actions/activeOfficial'
+import { openLogActionModal } from '../actions/logActionModal'
 
 const mapStateToProps = (state) => {
   return {
-    userActionErrors: state.errors.userActionForm || {},
     loggedIn: !!state.token
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  submit: (params) => {
-    debugger
-  },
-  clearLogActionErrors: () => {
-    dispatch(clearErrors('userActionForm'))
-  },
   openDrawer: () => {
     dispatch(openDrawer())
+  },
+  openLogActionModal: () => {
+    dispatch(openLogActionModal())
+  },
+  setActiveOfficial: (official, office, division) => {
+    dispatch(setActiveOfficial(official, office, division))
   }
 })
 

@@ -12,6 +12,8 @@ import DivisionListContainer from '../containers/DivisionListContainer'
 import LayoutContainer from '../containers/LayoutContainer'
 import Login from '../containers/form/Login'
 import Registration from '../containers/form/Registration'
+import LogActionModalContainer from '../containers/LogActionModalContainer'
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import { blue900 } from 'material-ui/styles/colors'
@@ -28,6 +30,7 @@ const Home = () => {
     <div>
       <AddressSearch />
       <DivisionListContainer />
+      <LogActionModalContainer />
     </div>
   )
 }

@@ -61,8 +61,7 @@ class LogActionModal extends Component {
   }
 
   submit = () => {
-    debugger
-    this.props.handleSubmit(this.state.form)
+    this.props.handleSubmit(this.state.form, this.props.official)
   }
 
   handleValid = () => {
@@ -98,14 +97,18 @@ class LogActionModal extends Component {
   }
 
   render () {
+    if (!this.props.official) {
+      return null
+    }
+
     return (
       <div ref="logActionModal">
         <Dialog
             title={
               <div>
-                Log an action
+                LOG ACTION
                 <div style={officialInfoStyle}>
-                  {this.props.official.name}, {this.props.office.name}
+                  {this.props.official.name}, {this.props.official.office.name}
                 </div>
               </div>
             }

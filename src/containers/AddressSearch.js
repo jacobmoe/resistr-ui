@@ -26,33 +26,12 @@ class AddressSearch extends Component {
     }
   }
 
-  receiveAddress (a, b) {
-    // got to be a better way to do this
-    // after selecting the address from the list
-    // need to get the original object with coords
-    // from the data source.
-    // but what is `dataSourceConfig` for if there's
-    // no way to access "value"
-    const addresses = this.refs.autocomplete.props.dataSource
-    const text = this.refs.autocomplete.state.searchText
-
-    const obj = _.find(addresses, {label: text})
-
-    if (obj && obj.label) {
-      this.props.buildAddress(obj.label)
-    }
-  }
-
   render () {
     return (
       <div>
         <AutoComplete
             hintText="Address"
             dataSource={this.props.addressSearchResults}
-            dataSourceConfig={{
-              text: 'label',
-              value: 'coords'
-            }}
             onUpdateInput={
               _.debounce((value) => (
                 this.props.getAddressSearchResults(
@@ -62,7 +41,7 @@ class AddressSearch extends Component {
               ), 250)
             }
             fullWidth={true}
-            onClose={this.receiveAddress.bind(this)}
+            onNewRequest={this.props.buildAddress}
             ref={'autocomplete'}
             filter={AutoComplete.fuzzyFilter}
             style={style.autocomplete}
@@ -77,10 +56,7 @@ class AddressSearch extends Component {
 const mapStateToProps = (state) => {
   return {
     addressSearchResults: state.addressSearchResults.map((a) => (
-      {
-        label: a.properties.label,
-        coords: a.geometry.coordinates
-      }
+      a.properties.label
     )),
     browserCoords: state.browserCoords,
     address: state.address

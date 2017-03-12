@@ -8,6 +8,8 @@ import drawer from './drawer'
 import errors from './errors'
 import snackbarMessage from './snackbarMessage'
 import token from './token'
+import activeOfficial from './activeOfficial'
+import logActionModal from './logActionModal'
 
 export default combineReducers({
   requests,
@@ -18,5 +20,7 @@ export default combineReducers({
   drawer,
   errors,
   snackbarMessage,
-  token
+  token,
+  activeOfficial,
+  logActionModal
 })

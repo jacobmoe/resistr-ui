@@ -4,7 +4,7 @@ import { startRequest, endRequest } from './requests'
 function setAddressResults(json) {
   return {
     type: 'SET_ADDRESS_SEARCH_RESULTS',
-    addressSearchResults: json.features
+    addressSearchResults: json.features || []
   }
 }
 

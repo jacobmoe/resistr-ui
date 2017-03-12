@@ -14,7 +14,6 @@ import Paper from 'material-ui/Paper'
 import { grey900, white } from 'material-ui/styles/colors'
 
 import OfficialCardContact from './OfficialCardContact'
-import LogActionModal from './LogActionModal'
 
 const officialCardStyles = {
   minWidth: '300px',
@@ -52,10 +51,6 @@ class OfficialCard extends Component {
     super(props)
 
     this.avatarAttemptCount = 0
-
-    this.state = {
-      modalOpen: false
-    }
   }
 
   onAvatarError = (e) => {
@@ -66,18 +61,16 @@ class OfficialCard extends Component {
 
   handleLogActionTap = () => {
     if (this.props.loggedIn) {
-      this.setState({
-        modalOpen: true
-      })
+      this.props.setActiveOfficial(
+        this.props.official,
+        this.props.office,
+        this.props.division
+      )
+
+      this.props.openLogActionModal()
     } else {
       this.props.openDrawer()
     }
-  }
-
-  closeLogActionModal = () => {
-    this.setState({
-      modalOpen: false
-    })
   }
 
   render () {
@@ -117,16 +110,6 @@ class OfficialCard extends Component {
             } />
           </CardActions>
         </Card>
-
-        <LogActionModal
-            isOpen={this.state.modalOpen}
-            handleCancel={this.closeLogActionModal}
-            handleSubmit={this.props.submit}
-            clearErrors={this.props.clearLogActionErrors}
-            errors={this.props.userActionErrors}
-            official={this.props.official}
-            office={this.props.office}
-        />
       </div>
     )
   }
