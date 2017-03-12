@@ -7,7 +7,7 @@ import divisions from './divisions'
 import drawer from './drawer'
 import errors from './errors'
 import snackbarMessage from './snackbarMessage'
-import token from './token'
+import auth from './auth'
 import activeOfficial from './activeOfficial'
 import logActionModal from './logActionModal'
 
@@ -20,7 +20,7 @@ export default combineReducers({
   drawer,
   errors,
   snackbarMessage,
-  token,
+  auth,
   activeOfficial,
   logActionModal
 })

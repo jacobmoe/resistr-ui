@@ -1,6 +1,11 @@
 const fetch = window.fetch
 const domain = "http://localhost:3000"
 
+const defaultHeaders = {
+  'Content-Type': 'application/json',
+  'guard': 'request-no-cors'
+}
+
 const errorResponse = (res) => {
   return res.json().then((json) => {
     return Promise.reject(json)
@@ -8,14 +13,10 @@ const errorResponse = (res) => {
 }
 
 const request = (path, options) => {
-  const defaults = {
-    headers: {
-      'Content-Type': 'application/json',
-      'guard': 'request-no-cors'
-    }
-  }
+  const headers = Object.assign({}, defaultHeaders, options.headers || {})
+  delete options.headers
 
-  return fetch(domain + path, Object.assign(defaults, options))
+  return fetch(domain + path, Object.assign({}, { headers }, options))
     .catch(err => {
       return Promise.reject({error: 'Network error'})
     })
@@ -69,6 +70,18 @@ const auth = {
   }
 }
 
+const userActions = {
+  create: (params, auth) => {
+    const path = '/api/user-actions'
+    return post(path, {
+      body: JSON.stringify(params),
+      headers: {
+        'Authorization': `Bearer ${auth.token}`
+      }
+    })
+  }
+}
+
 export default {
   get,
   post,
@@ -76,5 +89,6 @@ export default {
   patch,
   del,
   congress,
-  auth
+  auth,
+  userActions
 }

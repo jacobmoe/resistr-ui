@@ -6,7 +6,7 @@ import { openLogActionModal } from '../actions/logActionModal'
 
 const mapStateToProps = (state) => {
   return {
-    loggedIn: !!state.token
+    loggedIn: !!state.auth
   }
 }
 

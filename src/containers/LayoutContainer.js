@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
   return {
     drawerOpen: state.drawer,
     snackbarMessage: state.snackbarMessage,
-    loggedIn: !!state.token
+    loggedIn: !!state.auth
   }
 }
 

@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
-import UserActionForm from './form/UserActionForm'
 
 import { Form } from 'formsy-react'
 import EmailField from './form/EmailField'
@@ -61,7 +60,11 @@ class LogActionModal extends Component {
   }
 
   submit = () => {
-    this.props.handleSubmit(this.state.form, this.props.official)
+    this.props.handleSubmit(
+      this.state.form,
+      this.props.official,
+      this.props.auth
+    )
   }
 
   handleValid = () => {

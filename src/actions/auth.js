@@ -2,13 +2,23 @@ import { browserHistory } from 'react-router'
 
 import api from '../api'
 import { addErrors } from './errors'
-import { setToken, clearToken } from './token'
-import { setCurrentUser, clearCurrentUser } from './currentUser'
 import { setSnackbarMessage } from './snackbarMessage'
 
+function setAuth (authData) {
+  return {
+    type: 'SET_AUTH',
+    auth: authData
+  }
+}
+
+function clearAuth () {
+  return {
+    type: 'CLEAR_AUTH'
+  }
+}
+
 function handleAuthSuccess (dispatch, json, message) {
-  dispatch(setToken(json.token))
-  dispatch(setCurrentUser(json.user))
+  dispatch(setAuth(json))
   dispatch(setSnackbarMessage(message))
   browserHistory.push('/')
 }
@@ -39,8 +49,7 @@ export function login (params) {
 
 export function logout (user) {
   return (dispatch) => {
-    dispatch(clearToken())
-    dispatch(clearCurrentUser())
+    dispatch(clearAuth())
     dispatch(setSnackbarMessage('Logged out'))
     browserHistory.push('/')
   }
