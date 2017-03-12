@@ -3,18 +3,13 @@ import React, { PropTypes } from 'react'
 import Division from './Division'
 import WelcomeMessage from './WelcomeMessage'
 
-const DivisionList = ({divisions, loggedIn, openDrawer }) => {
+const DivisionList = ({ divisions }) => {
   return (
     <div>
       {divisions && (divisions.length < 1) && <WelcomeMessage />}
 
       {divisions.map(division =>
-        <Division
-            key={division.name}
-            division={division}
-            loggedIn={loggedIn}
-            openDrawer={openDrawer}
-        />
+        <Division key={division.name} division={division} />
       )}
     </div>
   )

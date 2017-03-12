@@ -121,7 +121,12 @@ class OfficialCard extends Component {
         <LogActionModal
             isOpen={this.state.modalOpen}
             handleCancel={this.closeLogActionModal}
-            handleSubmit={() => {}} />
+            handleSubmit={this.props.submit}
+            clearErrors={this.props.clearLogActionErrors}
+            errors={this.props.userActionErrors}
+            official={this.props.official}
+            office={this.props.office}
+        />
       </div>
     )
   }
