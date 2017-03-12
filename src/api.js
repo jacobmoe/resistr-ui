@@ -82,6 +82,28 @@ const userActions = {
   }
 }
 
+const actions = {
+  list: (auth) => {
+    const path = '/api/actions'
+    return get(path, {
+      headers: {
+        'Authorization': `Bearer ${auth && auth.token}`
+      }
+    })
+  }
+}
+
+const issues = {
+  list: (auth) => {
+    const path = '/api/issues'
+    return get(path, {
+      headers: {
+        'Authorization': `Bearer ${auth && auth.token}`
+      }
+    })
+  }
+}
+
 export default {
   get,
   post,
@@ -90,5 +112,7 @@ export default {
   del,
   congress,
   auth,
-  userActions
+  userActions,
+  actions,
+  issues
 }

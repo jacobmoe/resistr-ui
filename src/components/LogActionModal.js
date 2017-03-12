@@ -99,6 +99,34 @@ class LogActionModal extends Component {
     )
   }
 
+  actionsForSelect = () => {
+    return (
+      this.props.actionList.map((action) => {
+        return (
+          <MenuItem
+              key={action.id}
+              value={action.id}
+              primaryText={action.name}
+          />
+        )
+      })
+    )
+  }
+
+  issuesForSelect = () => {
+    return (
+      this.props.issueList.map((issue) => {
+        return (
+          <MenuItem
+              key={issue.id}
+              value={issue.id}
+              primaryText={issue.name}
+          />
+        )
+      })
+    )
+  }
+
   render () {
     if (!this.props.official) {
       return null
@@ -118,7 +146,6 @@ class LogActionModal extends Component {
             actions={[this.cancelButton(), this.submitButton()]}
             modal={false}
             open={this.props.isOpen}
-            onRequestClose={() => {}}
             autoScrollBodyContent={true}
             onRequestClose={this.props.handleCancel}
         >
@@ -136,14 +163,14 @@ class LogActionModal extends Component {
               name="actionId"
               required
           >
-            {actionsForSelect}
+            {this.actionsForSelect()}
           </FormsySelect><br />
           <FormsySelect
               floatingLabelText="Issue"
               name="issueId"
               required
           >
-            {issuesForSelect}
+            {this.issuesForSelect()}
           </FormsySelect>
 
         </Form>

@@ -8,7 +8,9 @@ const mapStateToProps = (state) => {
   return {
     isOpen: state.logActionModal,
     official: state.activeOfficial,
-    auth: state.auth
+    auth: state.auth,
+    actionList: state.actions.list,
+    issueList: state.issues.list
   }
 }
 

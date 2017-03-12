@@ -67,6 +67,9 @@ class OfficialCard extends Component {
         this.props.division
       )
 
+      this.props.loadActions()
+      this.props.loadIssues()
+
       this.props.openLogActionModal()
     } else {
       this.props.openDrawer()

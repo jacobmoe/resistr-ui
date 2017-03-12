@@ -10,6 +10,8 @@ import snackbarMessage from './snackbarMessage'
 import auth from './auth'
 import activeOfficial from './activeOfficial'
 import logActionModal from './logActionModal'
+import actions from './actions'
+import issues from './issues'
 
 export default combineReducers({
   requests,
@@ -22,5 +24,7 @@ export default combineReducers({
   snackbarMessage,
   auth,
   activeOfficial,
-  logActionModal
+  logActionModal,
+  actions,
+  issues
 })
