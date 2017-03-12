@@ -4,7 +4,7 @@ import OfficialCard from './OfficialCard'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import Subheader from 'material-ui/Subheader'
 
-const Division = ({division}) => {
+const Division = ({division, loggedIn, openDrawer}) => {
   return (
     <Grid>
       <Subheader>{division.name.toUpperCase()}</Subheader>
@@ -15,7 +15,10 @@ const Division = ({division}) => {
             <Col xs sm md lg key={official.name}>
               <OfficialCard
                   official={official}
-                  office={office} />
+                  office={office}
+                  loggedIn={loggedIn}
+                  openDrawer={openDrawer}
+              />
             </Col>
           )
          })}

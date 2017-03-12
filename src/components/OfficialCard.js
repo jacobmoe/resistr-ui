@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { Component } from 'react'
 
 import {
   Card,
@@ -14,6 +14,7 @@ import Paper from 'material-ui/Paper'
 import { grey900, white } from 'material-ui/styles/colors'
 
 import OfficialCardContact from './OfficialCardContact'
+import LogActionModal from './LogActionModal'
 
 const officialCardStyles = {
   minWidth: '300px',
@@ -45,50 +46,85 @@ const partyImage = (member) => {
 const defaultImage = '/img/us-flag.png'
 const maxAvatarAttemptCount = 10
 
-const OfficialCard = ({ official, office }) => {
-  let avatarAttemptCount = 0
+class OfficialCard extends Component {
 
-  const onAvatarError = (e) => {
-    if (avatarAttemptCount++ < maxAvatarAttemptCount) {
+  constructor (props) {
+    super(props)
+
+    this.avatarAttemptCount = 0
+
+    this.state = {
+      modalOpen: false
+    }
+  }
+
+  onAvatarError = (e) => {
+    if (this.avatarAttemptCount++ < maxAvatarAttemptCount) {
       e.target.src=defaultImage
     }
   }
 
-  return (
-    <Card style={officialCardStyles}>
-      <CardHeader
-        title={official.name}
-        subtitle={office.name}
-        avatar={
-          <Avatar
-            src={official.photoUrl || defaultImage}
-            onError={onAvatarError}
+  handleLogActionTap = () => {
+    if (this.props.loggedIn) {
+      this.setState({
+        modalOpen: true
+      })
+    } else {
+      this.props.openDrawer()
+    }
+  }
+
+  closeLogActionModal = () => {
+    this.setState({
+      modalOpen: false
+    })
+  }
+
+  render () {
+    return (
+      <div>
+        <Card style={officialCardStyles}>
+          <CardHeader
+            title={this.props.official.name}
+            subtitle={this.props.office.name}
+            avatar={
+              <Avatar
+                src={this.props.official.photoUrl || defaultImage}
+                onError={this.onAvatarError}
+              />
+            }
           />
-        }
-      />
 
-      <CardText>
-        <OfficialCardContact official={official} />
-      </CardText>
+          <CardText>
+            <OfficialCardContact official={this.props.official} />
+          </CardText>
 
-      <CardActions style={actionStyles}>
-        <FlatButton
-            label="Log Action"
-            labelPosition="after"
-            primary={true}
-            icon={<ActionPhone />}
-        />
+          <CardActions style={actionStyles}>
+            <FlatButton
+                onTouchTap={this.handleLogActionTap}
+                label="Log Action"
+                labelPosition="after"
+                primary={true}
+                icon={<ActionPhone />}
+            />
 
-        <FlatButton icon={
-          <Avatar
-            style={{backgroundColor: white}}
-            src={partyImage(official)}
-          />
+            <FlatButton icon={
+              <Avatar
+                style={{backgroundColor: white}}
+                src={partyImage(this.props.official)}
+              />
 
-        } />
-      </CardActions>
-    </Card>
-  )
+            } />
+          </CardActions>
+        </Card>
+
+        <LogActionModal
+            isOpen={this.state.modalOpen}
+            handleCancel={this.closeLogActionModal}
+            handleSubmit={() => {}} />
+      </div>
+    )
+  }
 }
 
 export default OfficialCard

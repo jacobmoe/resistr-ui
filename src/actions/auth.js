@@ -6,7 +6,7 @@ import { setToken, clearToken } from './token'
 import { setCurrentUser, clearCurrentUser } from './currentUser'
 import { setSnackbarMessage } from './snackbarMessage'
 
-function handleSuccess (dispatch, json, message) {
+function handleAuthSuccess (dispatch, json, message) {
   dispatch(setToken(json.token))
   dispatch(setCurrentUser(json.user))
   dispatch(setSnackbarMessage(message))
@@ -17,7 +17,7 @@ export function register (params) {
   return (dispatch) => {
     api.auth.register(params)
       .then((json) => {
-        handleSuccess(dispatch, json, 'Success! Account created')
+        handleAuthSuccess(dispatch, json, 'Success! Account created')
       })
       .catch((err) => {
         dispatch(addErrors('registrationForm', err))
@@ -29,7 +29,7 @@ export function login (params) {
   return (dispatch) => {
     api.auth.login(params)
       .then((json) => {
-        handleSuccess(dispatch, json, 'Success! Logged in')
+        handleAuthSuccess(dispatch, json, 'Logged in')
       })
       .catch((err) => {
         dispatch(addErrors('loginForm', err))
@@ -41,7 +41,7 @@ export function logout (user) {
   return (dispatch) => {
     dispatch(clearToken())
     dispatch(clearCurrentUser())
-    dispatch(setSnackbarMessage("Logged out"))
+    dispatch(setSnackbarMessage('Logged out'))
     browserHistory.push('/')
   }
 }
