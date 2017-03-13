@@ -1,3 +1,5 @@
+const qs = require('qs')
+
 const fetch = window.fetch
 const domain = "http://localhost:3000"
 
@@ -73,10 +75,21 @@ const auth = {
 const userActions = {
   create: (params, auth) => {
     const path = '/api/user-actions'
+
     return post(path, {
       body: JSON.stringify(params),
       headers: {
         'Authorization': `Bearer ${auth.token}`
+      }
+    })
+  },
+  list: (auth, query) => {
+    const path = '/api/user-actions'
+    const queryString = qs.stringify(query)
+
+    return get(`${path}?${queryString}`, {
+      headers: {
+        'Authorization': `Bearer ${auth && auth.token}`
       }
     })
   }

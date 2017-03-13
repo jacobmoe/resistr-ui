@@ -12,6 +12,7 @@ import Avatar from 'material-ui/Avatar'
 import ActionPhone from 'material-ui/svg-icons/action/settings-phone'
 import Paper from 'material-ui/Paper'
 import { grey900, white } from 'material-ui/styles/colors'
+import ActionHome from 'material-ui/svg-icons/action/home'
 
 import OfficialCardContact from './OfficialCardContact'
 
@@ -48,8 +49,15 @@ const maxAvatarAttemptCount = 10
 class OfficialCard extends Component {
 
   constructor (props) {
+    props.official.identifier = [
+      props.office.divisionId,
+      props.office.name,
+      props.official.name
+    ].join('_')
+
     super(props)
 
+    props.loadUserActions(props.office, props.official)
     this.avatarAttemptCount = 0
   }
 
@@ -76,7 +84,13 @@ class OfficialCard extends Component {
     }
   }
 
+  userActionsForOfficial = () => {
+    return this.props.userActions[this.props.official.identifier]
+  }
+
   render () {
+    const userActions = this.userActionsForOfficial() || []
+
     return (
       <div>
         <Card style={officialCardStyles}>
@@ -91,13 +105,19 @@ class OfficialCard extends Component {
             }
           />
 
+          <div style={{marginLeft: '20px'}}>
+            {userActions.map((userAction) => {
+              return <ActionHome key={userAction.id} />
+            })}
+          </div>
+
           <CardText>
             <OfficialCardContact official={this.props.official} />
           </CardText>
 
           <CardActions style={actionStyles}>
-            <FlatButton
-                onTouchTap={this.handleLogActionTap}
+          <FlatButton
+          onTouchTap={this.handleLogActionTap}
                 label="Log Action"
                 labelPosition="after"
                 primary={true}
