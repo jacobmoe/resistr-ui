@@ -3,21 +3,39 @@ import { addErrors } from './errors'
 import { setSnackbarMessage } from './snackbarMessage'
 import { closeLogActionModal } from './logActionModal'
 
-export function createUserAction (params, auth) {
-  return (dispatch) => {
-    api.userActions.create(params, auth)
-      .then((json) => {
-        dispatch(setSnackbarMessage('Action logged'))
-        dispatch(closeLogActionModal())
-      })
-      .catch((err) => {
-        dispatch(addErrors('userActionForm', err))
-        setSnackbarMessage('There was a problem logging that action')
-      })
+export function createUserAction (data, official) {
+  const params = Object.assign({}, data, {
+    representative: {
+      ocdDivisionIdentifier: official.office.divisionId,
+      officeName: official.office.name,
+      name: official.name
+    }
+  })
+
+  return (dispatch, getState) => {
+    const state = getState()
+
+    if (state.auth) {
+      api.userActions.create(params, state.auth)
+        .then((json) => {
+          dispatch(setSnackbarMessage('Action logged'))
+          dispatch(closeLogActionModal())
+
+          // can be optimized by adding a new userAction
+          // rather than fetching them all again
+          dispatch(fetchUserActionsForOfficial(official.office, official))
+        })
+        .catch((err) => {
+          dispatch(addErrors('userActionForm', err))
+          setSnackbarMessage('There was a problem logging that action')
+        })
+    }
   }
 }
 
 export function fetchUserActionsForOfficial (office, official) {
+  // should always be adding the office as a prop on official
+
   return (dispatch, getState) => {
     const state = getState()
 

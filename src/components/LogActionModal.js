@@ -62,8 +62,7 @@ class LogActionModal extends Component {
   submit = () => {
     this.props.handleSubmit(
       this.state.form,
-      this.props.official,
-      this.props.auth
+      this.props.official
     )
   }
 

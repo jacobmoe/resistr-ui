@@ -8,7 +8,6 @@ const mapStateToProps = (state) => {
   return {
     isOpen: state.logActionModal,
     official: state.activeOfficial,
-    auth: state.auth,
     actionList: state.actions.list,
     issueList: state.issues.list
   }
@@ -18,16 +17,8 @@ const mapDispatchToProps = (dispatch) => ({
   handleCancel: () => {
     dispatch(closeLogActionModal())
   },
-  handleSubmit: (form, official, auth) => {
-    const params = Object.assign({}, form, {
-      representative: {
-        ocdDivisionIdentifier: official.office.divisionId,
-        officeName: official.office.name,
-        name: official.name
-      }
-    })
-
-    dispatch(createUserAction(params, auth))
+  handleSubmit: (form, official) => {
+    dispatch(createUserAction(form, official))
   },
   clearLogActionErrors: () => {
     dispatch(clearErrors('userActionForm'))

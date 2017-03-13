@@ -12,9 +12,9 @@ import Avatar from 'material-ui/Avatar'
 import ActionPhone from 'material-ui/svg-icons/action/settings-phone'
 import Paper from 'material-ui/Paper'
 import { grey900, white } from 'material-ui/styles/colors'
-import ActionHome from 'material-ui/svg-icons/action/home'
 
 import OfficialCardContact from './OfficialCardContact'
+import ActionIcon from './ActionIcon'
 
 const officialCardStyles = {
   minWidth: '300px',
@@ -107,7 +107,7 @@ class OfficialCard extends Component {
 
           <div style={{marginLeft: '20px'}}>
             {userActions.map((userAction) => {
-              return <ActionHome key={userAction.id} />
+              return <ActionIcon key={userAction.id} action={userAction.action} />
             })}
           </div>
 
