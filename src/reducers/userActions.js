@@ -5,6 +5,8 @@ const userActions = (state = {}, action) => {
       ...state,
       [action.identifier]: action.userActions
     }
+  case 'CLEAR_USER_ACTIONS':
+    return {}
   default:
     return state
   }

@@ -20,10 +20,7 @@ export function createUserAction (data, official) {
         .then((json) => {
           dispatch(setSnackbarMessage('Action logged'))
           dispatch(closeLogActionModal())
-
-          // can be optimized by adding a new userAction
-          // rather than fetching them all again
-          dispatch(fetchUserActionsForOfficial(official.office, official))
+          dispatch(fetchUserActionsForOfficial(official))
         })
         .catch((err) => {
           dispatch(addErrors('userActionForm', err))
@@ -33,21 +30,19 @@ export function createUserAction (data, official) {
   }
 }
 
-export function fetchUserActionsForOfficial (office, official) {
-  // should always be adding the office as a prop on official
-
+export function fetchUserActionsForOfficial (official) {
   return (dispatch, getState) => {
     const state = getState()
 
     const query = {
       representative: {
-        ocdDivisionIdentifier: office.divisionId,
-        officeName: office.name,
+        ocdDivisionIdentifier: official.office.divisionId,
+        officeName: official.office.name,
         name: official.name
       }
     }
 
-    // we probably don't actually want to require login here
+    // not sure if we actually want to require login here
     if (state.auth) {
       api.userActions.list(state.auth, query)
         .then((json) => {
@@ -57,6 +52,12 @@ export function fetchUserActionsForOfficial (office, official) {
           setSnackbarMessage('There was a problem loading some action logs')
         })
     }
+  }
+}
+
+export function clearUserActions () {
+  return {
+    type: 'CLEAR_USER_ACTIONS'
   }
 }
 

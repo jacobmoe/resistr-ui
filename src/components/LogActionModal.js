@@ -13,25 +13,22 @@ import { grey500 } from 'material-ui/styles/colors'
 
 import {FormsySelect } from 'formsy-material-ui/lib'
 
-const actionsForSelect = [
-  <MenuItem key={1} value={1} primaryText="phone call" />,
-  <MenuItem key={2} value={2} primaryText="email" />,
-  <MenuItem key={3} value={3} primaryText="letter" />,
-  <MenuItem key={4} value={4} primaryText="demonstration" />,
-  <MenuItem key={5} value={5} primaryText="town hall" />,
-  <MenuItem key={6} value={6} primaryText="office" />
-]
+import ActionIcon from './ActionIcon'
 
-const issuesForSelect = [
-  <MenuItem key={1} value={1} primaryText="health care" />,
-  <MenuItem key={2} value={2} primaryText="immigration" />,
-  <MenuItem key={3} value={3} primaryText="voting rights" />
-]
-
-const officialInfoStyle = {
-  fontSize: '14px',
-  fontWeight: 500,
-  color: grey500
+const styles = {
+  officialInfo: {
+    fontSize: '14px',
+    fontWeight: 500,
+    color: grey500
+  },
+  actionsSelectIcons: {
+    position: 'relative', 
+    top: '6px'
+  },
+  actionsSelectText: {
+    position: 'relative', 
+    left: '10px'
+  }
 }
 
 class LogActionModal extends Component {
@@ -103,9 +100,14 @@ class LogActionModal extends Component {
       this.props.actionList.map((action) => {
         return (
           <MenuItem
-              key={action.id}
-              value={action.id}
-              primaryText={action.name}
+            key={action.id}
+            value={action.id}
+            primaryText={
+              <div style={{}} >
+                <ActionIcon iconName={action.iconName} style={styles.actionsSelectIcons} />
+                <span style={styles.actionsSelectText}>{action.name}</span>
+              </div>
+            }
           />
         )
       })
@@ -137,7 +139,7 @@ class LogActionModal extends Component {
             title={
               <div>
                 LOG ACTION
-                <div style={officialInfoStyle}>
+                <div style={styles.officialInfo}>
                   {this.props.official.name}, {this.props.official.office.name}
                 </div>
               </div>

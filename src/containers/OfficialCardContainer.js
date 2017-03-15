@@ -21,8 +21,8 @@ const mapDispatchToProps = (dispatch) => ({
   openLogActionModal: () => {
     dispatch(openLogActionModal())
   },
-  setActiveOfficial: (official, office, division) => {
-    dispatch(setActiveOfficial(official, office, division))
+  setActiveOfficial: (official) => {
+    dispatch(setActiveOfficial(official))
   },
   loadActions: () => {
     dispatch(loadActions())
@@ -30,8 +30,8 @@ const mapDispatchToProps = (dispatch) => ({
   loadIssues: () => {
     dispatch(loadIssues())
   },
-  loadUserActions: (office, official) => {
-    dispatch(fetchUserActionsForOfficial(office, official))
+  loadUserActions: (official) => {
+    dispatch(fetchUserActionsForOfficial(official))
   }
 })
 

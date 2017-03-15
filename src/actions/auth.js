@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router'
 import api from '../api'
 import { addErrors } from './errors'
 import { setSnackbarMessage } from './snackbarMessage'
+import { clearUserActions } from './userActions'
 
 function setAuth (authData) {
   return {
@@ -50,6 +51,7 @@ export function login (params) {
 export function logout (user) {
   return (dispatch) => {
     dispatch(clearAuth())
+    dispatch(clearUserActions())
     dispatch(setSnackbarMessage('Logged out'))
     browserHistory.push('/')
   }

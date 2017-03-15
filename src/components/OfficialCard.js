@@ -14,23 +14,24 @@ import Paper from 'material-ui/Paper'
 import { grey900, white } from 'material-ui/styles/colors'
 
 import OfficialCardContact from './OfficialCardContact'
-import ActionIcon from './ActionIcon'
+import ActionIssuesInfo from './ActionIssuesInfo'
 
-const officialCardStyles = {
-  minWidth: '300px',
-  marginBottom: '20px',
-  marginLeft: '20px',
-  textAlign: 'left',
-  minHeight: '300px',
-  position: 'relative'
-}
-
-const actionStyles = {
-  top: 'auto',
-  left: 'auto',
-  bottom: '10px',
-  position: 'absolute',
-  textAlign: 'right'
+const styles = {
+  officialCard: {
+    minWidth: '300px',
+    marginBottom: '20px',
+    marginLeft: '20px',
+    textAlign: 'left',
+    minHeight: '320px',
+    position: 'relative'
+  },
+  action: {
+    top: 'auto',
+    left: 'auto',
+    bottom: '10px',
+    position: 'absolute',
+    textAlign: 'right'
+  }
 }
 
 const partyImage = (member) => {
@@ -49,18 +50,14 @@ const maxAvatarAttemptCount = 10
 class OfficialCard extends Component {
 
   constructor (props) {
-    props.official.identifier = [
-      props.office.divisionId,
-      props.office.name,
-      props.official.name
-    ].join('_')
-
     super(props)
 
-    props.loadUserActions(props.office, props.official)
+    props.loadUserActions(props.official)
     this.avatarAttemptCount = 0
   }
 
+  // setting maxAvatarAttemptCount might be a bit paranoid, but if someone
+  // deletes or renames the default image, we'd get an infinite loop
   onAvatarError = (e) => {
     if (this.avatarAttemptCount++ < maxAvatarAttemptCount) {
       e.target.src=defaultImage
@@ -69,11 +66,7 @@ class OfficialCard extends Component {
 
   handleLogActionTap = () => {
     if (this.props.loggedIn) {
-      this.props.setActiveOfficial(
-        this.props.official,
-        this.props.office,
-        this.props.division
-      )
+      this.props.setActiveOfficial( this.props.official)
 
       this.props.loadActions()
       this.props.loadIssues()
@@ -84,19 +77,39 @@ class OfficialCard extends Component {
     }
   }
 
+  groupActionIssues (userActions) {
+    if (!userActions) return null
+
+    return userActions.reduce((acc, ua) => {
+      acc[ua.action.name] = acc[ua.action.name] || {
+        iconName: ua.action.iconName, 
+        count: 0, 
+        issues: {}
+      }
+
+      acc[ua.action.name].count++
+
+      let issueCount = acc[ua.action.name].issues[ua.issue.name] || 0
+      acc[ua.action.name].issues[ua.issue.name] = ++issueCount
+
+      return acc
+    }, {})
+  }
+
   userActionsForOfficial = () => {
     return this.props.userActions[this.props.official.identifier]
   }
 
   render () {
     const userActions = this.userActionsForOfficial() || []
+    const groupedActionIssueCounts = this.groupActionIssues(userActions)
 
     return (
       <div>
-        <Card style={officialCardStyles}>
+        <Card style={styles.officialCard}>
           <CardHeader
             title={this.props.official.name}
-            subtitle={this.props.office.name}
+            subtitle={this.props.official.office.name}
             avatar={
               <Avatar
                 src={this.props.official.photoUrl || defaultImage}
@@ -106,8 +119,13 @@ class OfficialCard extends Component {
           />
 
           <div style={{marginLeft: '20px'}}>
-            {userActions.map((userAction) => {
-              return <ActionIcon key={userAction.id} action={userAction.action} />
+            {Object.keys(groupedActionIssueCounts).map((actionName) => {
+              return (
+                <ActionIssuesInfo 
+                  key={actionName}
+                  actionName={actionName} 
+                  actionInfo={groupedActionIssueCounts[actionName]} />
+              )
             })}
           </div>
 
@@ -115,14 +133,14 @@ class OfficialCard extends Component {
             <OfficialCardContact official={this.props.official} />
           </CardText>
 
-          <CardActions style={actionStyles}>
+          <CardActions style={styles.action}>
           <FlatButton
           onTouchTap={this.handleLogActionTap}
-                label="Log Action"
-                labelPosition="after"
-                primary={true}
-                icon={<ActionPhone />}
-            />
+            label="Log Action"
+            labelPosition="after"
+            primary={true}
+            icon={<ActionPhone />}
+          />
 
             <FlatButton icon={
               <Avatar
