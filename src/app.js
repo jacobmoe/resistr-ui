@@ -15,7 +15,7 @@ const store = createStore(
   applyMiddleware(thunk)
 )
 
-store.dispatch(fetchBrowserCoords())
+// store.dispatch(fetchBrowserCoords())
 
 browserHistory.listen(location => {
   store.dispatch(closeDrawer())

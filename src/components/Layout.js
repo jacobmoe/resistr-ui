@@ -6,6 +6,7 @@ import Snackbar from 'material-ui/Snackbar'
 import { Link } from 'react-router'
 import { white } from 'material-ui/styles/colors'
 import DrawerContent from './DrawerContent'
+import { Grid } from 'react-flexbox-grid'
 
 const styles = {
   appBarLink: {
@@ -39,12 +40,15 @@ const Layout = (props) => {
           docked={false}
       >
         <DrawerContent
-            handleAppBarClick={props.handleAppBarClick}
-            logout={props.logout}
-            loggedIn={props.loggedIn}
+          handleAppBarClick={props.handleAppBarClick}
+          logout={props.logout}
+          loggedIn={props.loggedIn}
         />
       </Drawer>
-      {props.children}
+
+      <Grid>
+        {props.children}
+      </Grid>
 
       <Snackbar
         open={!!props.snackbarMessage}

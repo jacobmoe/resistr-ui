@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import {List, ListItem} from 'material-ui/List'
 import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
 import Popover from 'material-ui/Popover'

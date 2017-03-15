@@ -17,6 +17,7 @@ import LogActionModalContainer from '../containers/LogActionModalContainer'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import { blue900 } from 'material-ui/styles/colors'
+import { Row, Col } from 'react-flexbox-grid'
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -28,7 +29,12 @@ const muiTheme = getMuiTheme({
 const Home = () => {
   return (
     <div>
-      <AddressSearch />
+      <Row>
+        <Col xs sm md lg>
+          <AddressSearch />
+        </Col>
+      </Row>
+
       <DivisionListContainer />
       <LogActionModalContainer />
     </div>

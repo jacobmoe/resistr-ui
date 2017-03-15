@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 
 import OfficialCardContainer from '../containers/OfficialCardContainer'
-import { Grid, Row, Col } from 'react-flexbox-grid'
+import { Row, Col } from 'react-flexbox-grid'
 import Subheader from 'material-ui/Subheader'
 
 const buildOfficial = (division, office, official) => {
@@ -15,7 +15,7 @@ const buildOfficial = (division, office, official) => {
 
 const Division = ({division}) => {
   return (
-    <Grid>
+    <div>
       <Subheader>{division.name.toUpperCase()}</Subheader>
 
       <Row>
@@ -27,7 +27,7 @@ const Division = ({division}) => {
           )
          })}
       </Row>
-    </Grid>
+    </div>
   )
 }
 

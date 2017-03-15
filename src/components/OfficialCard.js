@@ -20,7 +20,6 @@ const styles = {
   officialCard: {
     minWidth: '300px',
     marginBottom: '20px',
-    marginLeft: '20px',
     textAlign: 'left',
     minHeight: '320px',
     position: 'relative'
@@ -31,6 +30,12 @@ const styles = {
     bottom: '10px',
     position: 'absolute',
     textAlign: 'right'
+  },
+  cardHeader: {
+    // CardHeader has some right padding that 
+    // caused the subtitle to overflow out of the container
+    // causing a horizontal scroll on small screens
+    overflow: 'hidden' 
   }
 }
 
@@ -108,6 +113,7 @@ class OfficialCard extends Component {
       <div>
         <Card style={styles.officialCard}>
           <CardHeader
+            style={{overflow: 'hidden'}}
             title={this.props.official.name}
             subtitle={this.props.official.office.name}
             avatar={

@@ -6,17 +6,6 @@ import { fetchAddressSearchResults } from '../actions/addressSearchResults'
 import { buildAddress } from '../actions/address'
 import AutoComplete from 'material-ui/AutoComplete'
 
-const style = {
-  autocomplete: {
-    width: '95%',
-    margin: 'auto',
-    display: 'block'
-  },
-  textField: {
-
-  }
-}
-
 class AddressSearch extends Component {
   constructor (params) {
     super(params)
@@ -44,8 +33,6 @@ class AddressSearch extends Component {
             onNewRequest={this.props.buildAddress}
             ref={'autocomplete'}
             filter={AutoComplete.fuzzyFilter}
-            style={style.autocomplete}
-            textFieldStyle={style.textField}
             searchText={this.props.address || ""}
         />
       </div>
