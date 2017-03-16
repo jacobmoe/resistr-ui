@@ -3,7 +3,7 @@ import { addErrors } from './errors'
 import { setSnackbarMessage } from './snackbarMessage'
 import { closeLogActionModal } from './logActionModal'
 
-export function createUserAction (data, official) {
+export function createUserAction (data, official, settings) {
   const params = Object.assign({}, data, {
     representative: {
       ocdDivisionIdentifier: official.office.divisionId,
@@ -20,7 +20,7 @@ export function createUserAction (data, official) {
         .then((json) => {
           dispatch(setSnackbarMessage('Action logged'))
           dispatch(closeLogActionModal())
-          dispatch(fetchUserActionsForOfficial(official))
+          dispatch(fetchUserActionsForOfficial(official, settings))
         })
         .catch((err) => {
           dispatch(addErrors('userActionForm', err))
@@ -30,7 +30,7 @@ export function createUserAction (data, official) {
   }
 }
 
-export function fetchUserActionsForOfficial (official) {
+export function fetchUserActionsForOfficial (official, settings) {
   return (dispatch, getState) => {
     const state = getState()
 
@@ -39,7 +39,12 @@ export function fetchUserActionsForOfficial (official) {
         ocdDivisionIdentifier: official.office.divisionId,
         officeName: official.office.name,
         name: official.name
-      }
+      },
+      timePeriod: settings.timePeriod
+    }
+
+    if (settings.restrictToCurrentUser) {
+      query.userId = state.auth.user.id
     }
 
     // not sure if we actually want to require login here

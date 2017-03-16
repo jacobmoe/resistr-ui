@@ -4,6 +4,7 @@ import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
 import Popover from 'material-ui/Popover'
 import Subheader from 'material-ui/Subheader'
+import Divider from 'material-ui/Divider'
 import ActionIcon from './ActionIcon'
 
 class ActionIssuesInfo extends Component {
@@ -31,7 +32,7 @@ class ActionIssuesInfo extends Component {
   }
 
   handleMouseLeave = () => {
-    setTimeout(this.closePopover, 4000)
+    setTimeout(this.closePopover, 2000)
   }
 
   render () {
@@ -48,6 +49,7 @@ class ActionIssuesInfo extends Component {
         >
           <Menu>
             <Subheader>{this.props.actionName}</Subheader>
+            <Divider />
             {Object.keys(issues).map((issueName) => {
               return (
                 <MenuItem 

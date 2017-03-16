@@ -9,7 +9,9 @@ const mapStateToProps = (state) => {
     isOpen: state.logActionModal,
     official: state.activeOfficial,
     actionList: state.actions.list,
-    issueList: state.issues.list
+    issueList: state.issues.list,
+    userActionDisplaySettings: state.userActionDisplaySettings
+
   }
 }
 
@@ -17,8 +19,8 @@ const mapDispatchToProps = (dispatch) => ({
   handleCancel: () => {
     dispatch(closeLogActionModal())
   },
-  handleSubmit: (form, official) => {
-    dispatch(createUserAction(form, official))
+  handleSubmit: (form, official, settings) => {
+    dispatch(createUserAction(form, official, settings))
   },
   clearLogActionErrors: () => {
     dispatch(clearErrors('userActionForm'))

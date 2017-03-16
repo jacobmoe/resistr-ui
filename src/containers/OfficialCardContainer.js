@@ -10,7 +10,8 @@ import { fetchUserActionsForOfficial } from '../actions/userActions'
 const mapStateToProps = (state) => {
   return {
     loggedIn: !!state.auth,
-    userActions: state.userActions
+    userActions: state.userActions,
+    userActionDisplaySettings: state.userActionDisplaySettings
   }
 }
 
@@ -30,8 +31,8 @@ const mapDispatchToProps = (dispatch) => ({
   loadIssues: () => {
     dispatch(loadIssues())
   },
-  loadUserActions: (official) => {
-    dispatch(fetchUserActionsForOfficial(official))
+  loadUserActions: (official, settings) => {
+    dispatch(fetchUserActionsForOfficial(official, settings))
   }
 })
 

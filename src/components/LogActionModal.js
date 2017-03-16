@@ -2,11 +2,8 @@ import React, { Component } from 'react'
 
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
-import RaisedButton from 'material-ui/RaisedButton'
 
 import { Form } from 'formsy-react'
-import EmailField from './form/EmailField'
-import PasswordField from './form/PasswordField'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import { grey500 } from 'material-ui/styles/colors'
@@ -36,47 +33,36 @@ class LogActionModal extends Component {
   constructor (props) {
     super(props)
 
-    if (this.canSetState()) {
-      this.setState({
-        form: {},
-        canSubmit: false
-      })
+    this.state = {
+      form: {},
+      canSubmit: false
     }
-  }
-
-  canSetState = () => {
-    return this.refs.logActionModal
   }
 
   setForm = (form) => {
-    if (this.canSetState()) {
-      this.setState({
-        form: form
-      })
-    }
+    this.setState({
+      form: form
+    })
   }
 
   submit = () => {
     this.props.handleSubmit(
       this.state.form,
-      this.props.official
+      this.props.official,
+      this.props.userActionDisplaySettings
     )
   }
 
   handleValid = () => {
-    if (this.canSetState()) {
-      this.setState({
-        canSubmit: true
-      })
-    }
+    this.setState({
+      canSubmit: true
+    })
   }
 
   handleInvalid = () => {
-    if (this.canSetState()) {
-      this.setState({
-        canSubmit: false
-      })
-    }
+    this.setState({
+      canSubmit: false
+    })
   }
 
   cancelButton = () => {

@@ -36,6 +36,9 @@ const styles = {
     // caused the subtitle to overflow out of the container
     // causing a horizontal scroll on small screens
     overflow: 'hidden' 
+  },
+  actionIcons: {
+    paddingLeft: '10px'
   }
 }
 
@@ -57,8 +60,21 @@ class OfficialCard extends Component {
   constructor (props) {
     super(props)
 
-    props.loadUserActions(props.official)
+    props.loadUserActions(props.official, props.userActionDisplaySettings)
     this.avatarAttemptCount = 0
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const currentSettings = this.props.userActionDisplaySettings
+    const nextSettings = nextProps.userActionDisplaySettings
+
+    // check if any settings have changed before pulling the trigger
+    for (let key in currentSettings) {
+      if (currentSettings[key] !== nextSettings[key]) {
+        this.props.loadUserActions(this.props.official, nextSettings)
+        break
+      }
+    }
   }
 
   // setting maxAvatarAttemptCount might be a bit paranoid, but if someone
@@ -124,7 +140,7 @@ class OfficialCard extends Component {
             }
           />
 
-          <div style={{marginLeft: '20px'}}>
+          <div style={styles.actionIcons}>
             {Object.keys(groupedActionIssueCounts).map((actionName) => {
               return (
                 <ActionIssuesInfo 

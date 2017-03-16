@@ -13,6 +13,7 @@ import logActionModal from './logActionModal'
 import actions from './actions'
 import issues from './issues'
 import userActions from './userActions'
+import userActionDisplaySettings from './userActionDisplaySetings'
 
 export default combineReducers({
   requests,
@@ -28,5 +29,6 @@ export default combineReducers({
   logActionModal,
   actions,
   issues,
-  userActions
+  userActions,
+  userActionDisplaySettings
 })

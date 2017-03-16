@@ -43,6 +43,8 @@ const Layout = (props) => {
           handleAppBarClick={props.handleAppBarClick}
           logout={props.logout}
           loggedIn={props.loggedIn}
+          updateSetting={props.updateSetting}
+          settings={props.settings}
         />
       </Drawer>
 
