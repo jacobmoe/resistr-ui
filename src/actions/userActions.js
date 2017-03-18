@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 import api from '../api'
 import { addErrors } from './errors'
 import { setSnackbarMessage } from './snackbarMessage'
@@ -40,7 +42,7 @@ export function fetchUserActionsForOfficial (official, settings) {
         officeName: official.office.name,
         name: official.name
       },
-      timePeriod: settings.timePeriod
+      createdAfter: moment().subtract(1, settings.timePeriod).format('YYYY-MM-DD')
     }
 
     if (settings.restrictToCurrentUser) {

@@ -5,6 +5,7 @@ import IconButton from 'material-ui/IconButton'
 import Subheader from 'material-ui/Subheader'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import MenuItem from 'material-ui/MenuItem'
+import Divider from 'material-ui/Divider'
 import { Link } from 'react-router'
 import { white, grey900 } from 'material-ui/styles/colors'
 import { FormsyRadio, FormsyRadioGroup } from 'formsy-material-ui/lib'
@@ -18,19 +19,18 @@ const styles = {
     color: grey900,
     textDecoration: 'none'
   },
-  settings: {
-    padding: '0 16px' 
+  setting: {
+    padding: '0 16px'
+  },
+  lowerDivider: {
+    marginTop: '15px'
   }
 }
 
 const LoggedInContent = ({ settings, logout, updateSetting }) => {
   return (
     <div>
-      <Link style={styles.menuLink} onClick={logout}>
-        <MenuItem>Logout</MenuItem>
-      </Link>
-
-      <div style={styles.settings}>
+      <div style={styles.setting}>
         <Subheader>Show activity for</Subheader>
         <Formsy.Form onChange={updateSetting}>
           <FormsyRadioGroup 
@@ -48,8 +48,8 @@ const LoggedInContent = ({ settings, logout, updateSetting }) => {
           </FormsyRadioGroup>
         </Formsy.Form>
       </div>
-      <div style={styles.settings}>
-        <Subheader>Time range</Subheader>
+      <div style={styles.setting}>
+        <Subheader>Time period</Subheader>
         <Formsy.Form onChange={updateSetting}>
           <FormsyRadioGroup 
             name="timePeriod" 
@@ -73,6 +73,11 @@ const LoggedInContent = ({ settings, logout, updateSetting }) => {
           </FormsyRadioGroup>
         </Formsy.Form>
       </div>
+
+      <Divider style={styles.lowerDivider} />
+      <Link style={styles.menuLink} onClick={logout}>
+        <MenuItem>Logout</MenuItem>
+      </Link>
     </div>
   )
 }
