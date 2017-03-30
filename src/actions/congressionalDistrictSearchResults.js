@@ -12,5 +12,6 @@ export function fetchCongressionalDistrictSearchResults(coords, cb) {
       .then((response) => {return response.json()})
       .then((json) => {cb(json.results[0])})
       .then(() => {dispatch(endRequest())})
+      .catch(() => {dispatch(endRequest())})
   }
 }

@@ -1,5 +1,4 @@
 import api from '../api'
-import { startRequest, endRequest } from './requests'
 
 function setAddressResults(json) {
   return {
@@ -21,9 +20,7 @@ export function fetchAddressSearchResults (term, browserCoords) {
   }
 
   return (dispatch) => {
-    dispatch(startRequest())
     return api.get(path)
       .then((json) => {dispatch(setAddressResults(json))})
-      .then(() => {dispatch(endRequest())})
   }
 }

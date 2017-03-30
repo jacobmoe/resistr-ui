@@ -23,5 +23,6 @@ export function fetchDivisions(address) {
     return api.get(path)
       .then((json) => {dispatch(setDivisions(json))})
       .then(() => {dispatch(endRequest())})
+      .catch(() => {dispatch(endRequest())})
   }
 }

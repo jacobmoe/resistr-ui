@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
     drawerOpen: state.drawer,
     snackbarMessage: state.snackbarMessage,
     loggedIn: !!state.auth,
-    settings: state.userActionDisplaySettings
+    settings: state.userActionDisplaySettings,
+    requestStarted: state.requests.requestStarted
   }
 }
 
