@@ -6,7 +6,6 @@ const NameField = () => {
   return (
     <FormsyText
         name="name"
-        validations="isWords"
         required
         hintText="Your name"
         floatingLabelText="Name"
